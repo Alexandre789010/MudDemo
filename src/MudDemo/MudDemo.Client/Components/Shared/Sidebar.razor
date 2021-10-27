@@ -1,0 +1,35 @@
+<div class="@Class"
+     style="@Style">
+    <MudNavLink Href="/"
+                Icon="@Icons.Material.Filled.Home"
+                Match="NavLinkMatch.All">
+        Home
+    </MudNavLink>
+    <MudNavGroup Expanded="false"
+                 Title="Admin"
+                 Icon="@Icons.Material.Filled.AdminPanelSettings">
+        <MudNavLink Href="/admin/#"
+                    Icon="@Icons.Material.Filled.Folder"
+                    Match="NavLinkMatch.All">
+            ...
+        </MudNavLink>
+    </MudNavGroup>
+</div>
+
+<style>
+    .mud-nav-link {
+        white-space: normal !important;
+    }
+</style>
+
+@code{
+
+    // TODO: Fix style.
+    
+    [Parameter]
+    public string? Class { get; set; }
+
+    [Parameter]
+    public string? Style { get; set; }
+
+}
