@@ -10,7 +10,7 @@
                Style="background: rgba(255,255,255,0.7)">
         @if (!_canMiniDrawer)
         {
-            <MudHidden Breakpoint="Breakpoint.SmAndUp">
+            <MudHidden Breakpoint="Breakpoint.MdAndUp">
                 <MudTooltip Text="Toggle menu">
                     <MudIconButton Class="mr-3"
                                    Color="Color.Default"
@@ -18,7 +18,7 @@
                                    Icon="@Icons.Material.Filled.Menu"
                                    OnClick="ToggleMenu" />
                 </MudTooltip>
-            </MudHidden>   
+            </MudHidden>
         }
         <MudTooltip Text="Search">
             <MudIconButton Color="Color.Default"
@@ -40,10 +40,10 @@
             <MudIconButton Color="Color.Default"
                            Icon="@Icons.Material.Filled.Notifications" />
         </MudBadge>
-        <UserMenu Class="ml-3"/>
+        <UserMenu Class="ml-3" />
     </MudAppBar>
     <MudDrawer @bind-Open="@_sideDrawerOpen"
-               Breakpoint="Breakpoint.Sm"
+               Breakpoint="Breakpoint.Md"
                Elevation="1"
                MiniWidth="100px"
                OpenMiniOnHover="true"
@@ -54,7 +54,7 @@
                      Color="Color.Primary"
                      Icon="@Icons.Custom.Brands.MudBlazor"
                      Size="Size.Large" />
-    
+
             @if (_sideDrawerOpen)
             {
                 <MudSpacer />
@@ -70,7 +70,7 @@
                 </MudTooltip>
             }
         </MudDrawerHeader>
-        <SideMenu />
+        <SideMenu SideDrawerOpen="_sideDrawerOpen"/>
     </MudDrawer>
     <MudMainContent>
         <MudContainer Class="mb-16 mt-4">
@@ -104,12 +104,13 @@
             }
         }
     };
-    
+
     private bool _sideDrawerOpen;
     private bool _canMiniDrawer = true;
-    
+
     private void ToggleMenu()
     {
         _sideDrawerOpen = !_sideDrawerOpen;
     }
+
 }

@@ -1,32 +1,126 @@
+@if (SideDrawerOpen)
+{
+    <div class="mx-6">
+        <MudButton Class="d-flex justify-start my-6 user-button"
+                   FullWidth="true">
+            <ChildContent>
+                <div class="d-flex justify-start px-4 py-2">
+                    <div>
+                        <MudAvatar Image="./sample-data/avatar.png" />
+                    </div>
+                    <div class="px-4">
+                        <MudText Typo="Typo.body2">MudDemo</MudText>
+                        <MudText Typo="Typo.caption">Admin</MudText>
+                    </div>
+                </div>
+            </ChildContent>
+        </MudButton>
+    </div>
+}
+else
+{
+    <div class="d-flex justify-center my-6">
+        <MudAvatar Image="./sample-data/avatar.png" />
+    </div>
+}
+
 <MudNavMenu>
+    @if (SideDrawerOpen)
+    {
+        <div class="ml-6 my-3">
+            <MudText Typo="Typo.caption">
+                <b>GENERAL</b>
+            </MudText>
+        </div>
+    }
     <MudNavLink Href="/"
-                Icon="@Icons.Material.Filled.Home"
+                Icon="@Icons.Material.Filled.Speed"
                 Match="NavLinkMatch.All">
-        Home
+        App
     </MudNavLink>
-    <MudNavLink Href="/dashboard"
-                Icon="@Icons.Material.Filled.Dashboard"
+    <MudNavLink Href="/ecommerce"
+                Icon="@Icons.Material.Filled.ShoppingCart"
                 Match="NavLinkMatch.All">
-        Dahsboard
+        E-Commerce
     </MudNavLink>
+    <MudNavLink Href="/analytics"
+                Icon="@Icons.Material.Filled.Analytics"
+                Match="NavLinkMatch.All">
+        Analytics
+    </MudNavLink>
+    <MudNavLink Href="/banking"
+                Icon="@Icons.Material.Filled.Money"
+                Match="NavLinkMatch.All">
+        Banking
+    </MudNavLink>
+    <MudNavLink Href="/booking"
+                Icon="@Icons.Material.Filled.CalendarToday"
+                Match="NavLinkMatch.All">
+        Booking
+    </MudNavLink>
+    @if (SideDrawerOpen)
+    {
+        <div class="ml-6 my-3">
+            <MudText Typo="Typo.caption">
+                <b>MANAGEMENT</b>
+            </MudText>
+        </div>
+    }
     <MudNavGroup Expanded="false"
-                 Icon="@Icons.Material.Filled.AdminPanelSettings"
-                 Title="Admin">
-        <MudNavLink Href="/admin/#"
-                    Icon="@Icons.Material.Filled.Folder"
+                 Icon="@Icons.Material.Filled.Person"
+                 Title="User">
+        <MudNavLink Href="/user/profile"
                     Match="NavLinkMatch.All">
-            ...
+            Profile
+        </MudNavLink>
+        <MudNavLink Href="/user/cards"
+                    Match="NavLinkMatch.All">
+            Cards
+        </MudNavLink>
+        <MudNavLink Href="/user/list"
+                    Match="NavLinkMatch.All">
+            List
+        </MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Expanded="@false"
+                 Icon="@Icons.Material.Filled.Article"
+                 Title="Blog">
+        <MudNavLink Href="/blog/posts"
+                    Match="NavLinkMatch.All">
+            Posts
+        </MudNavLink>
+        <MudNavLink Href="/blog/post"
+                    Match="NavLinkMatch.All">
+            Post
+        </MudNavLink>
+        <MudNavLink Href="/user/newpost"
+                    Match="NavLinkMatch.All">
+            New Post
         </MudNavLink>
     </MudNavGroup>
 </MudNavMenu>
 
-
 <style>
         .mud-nav-link {
             white-space: normal !important;
+            padding: 12px 16px 12px 38px;
         }
+        
+        .mud-nav-link.active:not(.mud-nav-link-disabled) {
+            border-right: 3px solid var(--mud-palette-primary);
+            background-color: rgba(var(--mud-palette-primary-rgb), 0.1)
+        }
+        
+        .user-button {
+            text-transform:none; 
+            background: rgba(var(--mud-palette-primary-rgb), 0.1)
+        }
+        
 </style>
 
 @code {
+
+    [Parameter]
+    public bool SideDrawerOpen { get; set; }
 
 }
