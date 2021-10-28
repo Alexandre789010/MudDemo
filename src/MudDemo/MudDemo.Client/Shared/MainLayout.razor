@@ -40,19 +40,7 @@
             <MudIconButton Color="Color.Default"
                            Icon="@Icons.Material.Filled.Notifications" />
         </MudBadge>
-        <MudMenu Direction="Direction.Left"
-                 OffsetX="true"
-                 OffsetY="true">
-            <ActivatorContent>
-                <MudAvatar Class="ml-3"
-                           Image="./sample-data/avatar.png">
-                </MudAvatar>
-            </ActivatorContent>
-            <ChildContent>
-                <MudListItem Icon="@Icons.Material.Outlined.Login"
-                             Text="Logout" />
-            </ChildContent>
-        </MudMenu>
+        <UserMenu Class="ml-3"/>
     </MudAppBar>
     <MudDrawer @bind-Open="@_sideDrawerOpen"
                Breakpoint="Breakpoint.Sm"

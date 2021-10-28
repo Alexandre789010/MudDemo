@@ -1,0 +1,55 @@
+<MudMenu AnchorOrigin="Origin.BottomRight"
+         Class="@Class"
+         LockScroll="true"
+         Style="@Style"
+         TransformOrigin="Origin.TopRight">
+    <ActivatorContent>
+        <MudAvatar Image="./sample-data/avatar.png" />
+    </ActivatorContent>
+    <ChildContent>
+        <div class="py-4"
+             style="min-width: 220px">
+            <MudText Class="px-6"
+                     Typo="Typo.body2">
+                <b>MudDemo</b>
+            </MudText>
+            <MudText Class="px-6"
+                     Typo="Typo.body2">
+                muddemo@demo.com
+            </MudText>
+            <MudDivider Class="my-2" />
+            <MudMenuItem >
+                <div class="d-flex">
+                    <MudIcon Class="mx-2"
+                             Icon="@Icons.Material.Filled.Person" />
+                    <MudText>Profil</MudText>
+                </div>
+            </MudMenuItem>
+            <MudMenuItem>
+                <div class="d-flex">
+                    <MudIcon Class="mx-2"
+                             Icon="@Icons.Material.Filled.Settings" />
+                    <MudText>Settings</MudText>
+                </div>
+            </MudMenuItem>
+            <div class="mt-4 mx-4">
+                <MudButton Color="Color.Default"
+                           FullWidth="true"
+                           StartIcon="@Icons.Material.Filled.Logout"
+                           Variant="Variant.Outlined">
+                    Logout
+                </MudButton>
+            </div>
+        </div>
+    </ChildContent>
+</MudMenu>
+
+@code {
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
+
+}
