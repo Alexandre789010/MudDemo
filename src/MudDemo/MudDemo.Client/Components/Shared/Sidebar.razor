@@ -1,20 +1,51 @@
-<div class="@Class"
-     style="@Style">
-    <MudNavLink Href="/"
-                Icon="@Icons.Material.Filled.Home"
-                Match="NavLinkMatch.All">
-        Home
-    </MudNavLink>
-    <MudNavGroup Expanded="false"
-                 Title="Admin"
-                 Icon="@Icons.Material.Filled.AdminPanelSettings">
-        <MudNavLink Href="/admin/#"
-                    Icon="@Icons.Material.Filled.Folder"
+<MudDrawer @bind-Open="@_sideDrawerOpen"
+           Breakpoint="Breakpoint.Xs"
+           Elevation="1"
+           OpenMiniOnHover="true"
+           PreserveOpenState="true"
+           Variant="@(_canMiniDrawer ? DrawerVariant.Mini : DrawerVariant.Persistent)">
+    <MudDrawerHeader Class="align-center d-flex justify-center pa-0">
+        <MudIcon Class="@(_sideDrawerOpen ? "ml-4" : "")"
+                 Color="Color.Primary"
+                 Icon="@Icons.Custom.Brands.MudBlazor" />
+
+        @if (_sideDrawerOpen)
+        {
+            <MudSpacer />
+            <MudTooltip Text="Allow mini">
+                <MudToggleIconButton @bind-Toggled="@_canMiniDrawer"
+                                     Class="mr-2"
+                                     Color="@Color.Error"
+                                     Icon="@Icons.Material.Filled.MenuOpen"
+                                     Size="Size.Small"
+                                     ToggledColor="@Color.Success"
+                                     ToggledIcon="@Icons.Material.Filled.MenuOpen"
+                                     ToggledSize="Size.Small" />
+            </MudTooltip>
+        }
+    </MudDrawerHeader>
+    <MudNavMenu >
+        <MudNavLink Href="/"
+                    Icon="@Icons.Material.Filled.Home"
                     Match="NavLinkMatch.All">
-            ...
+            Home
         </MudNavLink>
-    </MudNavGroup>
-</div>
+        <MudNavLink Href="/dashboard"
+                    Icon="@Icons.Material.Filled.Dashboard"
+                    Match="NavLinkMatch.All">
+            Dahsboard
+        </MudNavLink>
+        <MudNavGroup Expanded="false"
+                     Icon="@Icons.Material.Filled.AdminPanelSettings"
+                     Title="Admin">
+            <MudNavLink Href="/admin/#"
+                        Icon="@Icons.Material.Filled.Folder"
+                        Match="NavLinkMatch.All">
+                ...
+            </MudNavLink>
+        </MudNavGroup>
+    </MudNavMenu>
+</MudDrawer>
 
 <style>
     .mud-nav-link {
@@ -24,12 +55,12 @@
 
 @code{
 
-    // TODO: Fix style.
-    
-    [Parameter]
-    public string? Class { get; set; }
+    private bool _canMiniDrawer = true;
+    private bool _sideDrawerOpen;
 
-    [Parameter]
-    public string? Style { get; set; }
+    private void OpenSideDrawer()
+    {
+        _sideDrawerOpen = true;
+    }
 
 }
