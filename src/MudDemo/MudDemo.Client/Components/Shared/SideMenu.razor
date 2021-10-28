@@ -1,0 +1,32 @@
+<MudNavMenu>
+    <MudNavLink Href="/"
+                Icon="@Icons.Material.Filled.Home"
+                Match="NavLinkMatch.All">
+        Home
+    </MudNavLink>
+    <MudNavLink Href="/dashboard"
+                Icon="@Icons.Material.Filled.Dashboard"
+                Match="NavLinkMatch.All">
+        Dahsboard
+    </MudNavLink>
+    <MudNavGroup Expanded="false"
+                 Icon="@Icons.Material.Filled.AdminPanelSettings"
+                 Title="Admin">
+        <MudNavLink Href="/admin/#"
+                    Icon="@Icons.Material.Filled.Folder"
+                    Match="NavLinkMatch.All">
+            ...
+        </MudNavLink>
+    </MudNavGroup>
+</MudNavMenu>
+
+
+<style>
+        .mud-nav-link {
+            white-space: normal !important;
+        }
+</style>
+
+@code {
+
+}

@@ -9,12 +9,18 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.2.21480.10" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.2.21480.10" PrivateAssets="all" />
-        <PackageReference Include="MudBlazor" Version="5.1.5" />
+        <PackageReference Include="MudBlazor" Version="5.2.0-rc5" />
     </ItemGroup>
 
     <ItemGroup>
       <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
       <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Update="wwwroot\sample-data\avatar.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
