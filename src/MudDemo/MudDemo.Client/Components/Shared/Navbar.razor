@@ -1,0 +1,72 @@
+<MudAppBar Color="Color.Transparent"
+           Elevation="0">
+    <MudTooltip Text="Search">
+        <MudIconButton Color="Color.Inherit"
+                       Edge="Edge.Start"
+                       Icon="@Icons.Material.Filled.Search"
+                       OnClick="OpenSearchDrawer" />
+    </MudTooltip>
+    <MudSpacer />
+    <MudTooltip Text="Navigate to GitHub">
+        <MudIconButton Class="mx-2"
+                       Color="Color.Default"
+                       Icon="@Icons.Custom.Brands.GitHub"
+                       Link="https://github.com/Alexandre789010/MudDemo"
+                       Target="_blank" />
+    </MudTooltip>
+    <MudBadge Class="mx-6"
+              Color="Color.Primary"
+              Content="3"
+              Overlap="true">
+        <MudIcon Color="Color.Default"
+                 Icon="@Icons.Material.Filled.Notifications" />
+    </MudBadge>
+    <MudMenu Direction="Direction.Left"
+             OffsetX="true"
+             OffsetY="true">
+        <ActivatorContent>
+            <MudAvatar Class="ml-3"
+                       Color="Color.Primary">
+                A
+            </MudAvatar>
+        </ActivatorContent>
+        <ChildContent>
+            <MudListItem Icon="@Icons.Material.Outlined.Login"
+                         Text="Logout" />
+        </ChildContent>
+    </MudMenu>
+</MudAppBar>
+
+<MudDrawer Anchor="Anchor.Top"
+           @bind-Open="@_searchDrawerOpen"
+           Elevation="1"
+           MiniWidth="50"
+           Variant="DrawerVariant.Temporary">
+    <div class="d-flex justify-start pa-4">
+        <MudTextField Adornment="Adornment.Start"
+                      AdornmentColor="Color.Default"
+                      AdornmentIcon="@Icons.Material.Filled.Search"
+                      @bind-Value="@_searchString"
+                      Placeholder="Search..."
+                      Variant="Variant.Text">
+        </MudTextField>
+        <MudButton Class="ml-4 my-4"
+                   Color="Color.Primary"
+                   Size="Size.Small"
+                   Variant="Variant.Filled">
+            Search
+        </MudButton>
+    </div>
+</MudDrawer>
+
+@code {
+
+    private bool _searchDrawerOpen;
+    private string? _searchString;
+
+    private void OpenSearchDrawer()
+    {
+        _searchDrawerOpen = true;
+    }
+
+}
