@@ -1,10 +1,91 @@
 @inherits LayoutComponentBase
 
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudThemeProvider Theme="_theme" />
+
 <MudLayout >
-    <Navbar />
-    <Sidebar />
-    <MudMainContent Class="pt-8 px-8">
-        <MudContainer Class="mt-16">
+    <MudAppBar Class="px-8"
+               Elevation="0"
+               Style="background: rgba(255,255,255,0.7)">
+        @if (!_canMiniDrawer)
+        {
+            <MudHidden Breakpoint="Breakpoint.SmAndUp">
+                <MudTooltip Text="Toggle menu">
+                    <MudIconButton Class="mr-3"
+                                   Color="Color.Default"
+                                   Edge="Edge.Start"
+                                   Icon="@Icons.Material.Filled.Menu"
+                                   OnClick="ToggleMenu" />
+                </MudTooltip>
+            </MudHidden>   
+        }
+        <MudTooltip Text="Search">
+            <MudIconButton Color="Color.Default"
+                           Edge="Edge.Start"
+                           Icon="@Icons.Material.Filled.Search" />
+        </MudTooltip>
+        <MudSpacer />
+        <MudTooltip Text="Navigate to GitHub">
+            <MudIconButton Class="mx-3"
+                           Color="Color.Default"
+                           Icon="@Icons.Custom.Brands.GitHub"
+                           Link="https://github.com/Alexandre789010/MudDemo"
+                           Target="_blank" />
+        </MudTooltip>
+        <MudBadge Class="mx-3"
+                  Color="Color.Error"
+                  Dot="true"
+                  Overlap="true">
+            <MudIconButton Color="Color.Default"
+                           Icon="@Icons.Material.Filled.Notifications" />
+        </MudBadge>
+        <MudMenu Direction="Direction.Left"
+                 OffsetX="true"
+                 OffsetY="true">
+            <ActivatorContent>
+                <MudAvatar Class="ml-3"
+                           Image="./sample-data/avatar.png">
+                </MudAvatar>
+            </ActivatorContent>
+            <ChildContent>
+                <MudListItem Icon="@Icons.Material.Outlined.Login"
+                             Text="Logout" />
+            </ChildContent>
+        </MudMenu>
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_sideDrawerOpen"
+               Breakpoint="Breakpoint.Sm"
+               Elevation="1"
+               MiniWidth="100px"
+               OpenMiniOnHover="true"
+               Variant="@(_canMiniDrawer ? DrawerVariant.Mini : DrawerVariant.Responsive)"
+               Width="280px">
+        <MudDrawerHeader Class="align-center d-flex justify-center pa-0">
+            <MudIcon Class="@(_sideDrawerOpen ? "ml-6" : "")"
+                     Color="Color.Primary"
+                     Icon="@Icons.Custom.Brands.MudBlazor"
+                     Size="Size.Large" />
+    
+            @if (_sideDrawerOpen)
+            {
+                <MudSpacer />
+                <MudTooltip Text="Allow mini">
+                    <MudToggleIconButton @bind-Toggled="_canMiniDrawer"
+                                         Class="mr-2"
+                                         Color="@Color.Error"
+                                         Icon="@Icons.Material.Filled.MenuOpen"
+                                         Size="Size.Small"
+                                         ToggledColor="@Color.Success"
+                                         ToggledIcon="@Icons.Material.Filled.MenuOpen"
+                                         ToggledSize="Size.Small" />
+                </MudTooltip>
+            }
+        </MudDrawerHeader>
+        <SideMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer Class="mb-16 mt-4">
             @Body
         </MudContainer>
     </MudMainContent>
@@ -12,4 +93,35 @@
 
 @code{
 
+    private readonly MudTheme _theme = new()
+    {
+        Palette = new Palette
+        {
+            Primary = Colors.Green.Default
+        },
+        LayoutProperties = new LayoutProperties
+        {
+            AppbarHeight = "80px",
+            DefaultBorderRadius = "12px"
+        },
+        Typography = new Typography
+        {
+            Default = new Default
+            {
+                FontFamily = new[] {"Roboto", "Helvetica", "Arial", "sans-serif"},
+                FontWeight = 400,
+                FontSize = "0.9rem",
+                LineHeight = 1.43,
+                LetterSpacing = ".01071em"
+            }
+        }
+    };
+    
+    private bool _sideDrawerOpen;
+    private bool _canMiniDrawer = true;
+    
+    private void ToggleMenu()
+    {
+        _sideDrawerOpen = !_sideDrawerOpen;
+    }
 }
