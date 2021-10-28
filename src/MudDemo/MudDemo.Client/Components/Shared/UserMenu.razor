@@ -1,10 +1,10 @@
 <MudMenu AnchorOrigin="Origin.BottomRight"
+         Class="@Class"
          LockScroll="true"
+         Style="@Style"
          TransformOrigin="Origin.TopRight">
     <ActivatorContent>
-        <MudAvatar Class="ml-3"
-                   Image="./sample-data/avatar.png">
-        </MudAvatar>
+        <MudAvatar Image="./sample-data/avatar.png" />
     </ActivatorContent>
     <ChildContent>
         <div class="py-4"
@@ -45,5 +45,11 @@
 </MudMenu>
 
 @code {
+
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public string Style { get; set; }
 
 }
