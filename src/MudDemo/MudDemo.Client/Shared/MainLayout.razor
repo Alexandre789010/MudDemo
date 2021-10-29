@@ -1,4 +1,9 @@
 @inherits LayoutComponentBase
+@using Toolbelt.Blazor.HotKeys
+@implements IDisposable
+@inject IDialogService _dialogService
+@inject HotKeys _hotKeys
+
 
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -20,10 +25,11 @@
                 </MudTooltip>
             </MudHidden>
         }
-        <MudTooltip Text="Search">
+        <MudTooltip Text="Search (Cmd + K)">
             <MudIconButton Color="Color.Default"
                            Edge="Edge.Start"
-                           Icon="@Icons.Material.Filled.Search" />
+                           Icon="@Icons.Material.Filled.Search"
+                           OnClick="OpenCommandPalette"/>
         </MudTooltip>
         <MudSpacer />
         <MudTooltip Text="Navigate to GitHub">
@@ -80,7 +86,7 @@
 </MudLayout>
 
 @code{
-
+    
     private readonly MudTheme _theme = new()
     {
         Palette = new Palette
@@ -107,10 +113,41 @@
 
     private bool _sideDrawerOpen;
     private bool _canMiniDrawer = true;
+    private HotKeysContext? _hotKeysContext;
+    private bool _commandPaletteOpen;
 
+    protected override void OnInitialized()
+    {
+        _hotKeysContext = _hotKeys.CreateContext().Add(ModKeys.Meta, Keys.K, OpenCommandPalette, "Open command palette.");
+    }
+
+    public void Dispose()
+    {
+        _hotKeysContext?.Dispose();
+    }
+    
     private void ToggleMenu()
     {
         _sideDrawerOpen = !_sideDrawerOpen;
+    }
+
+    private async Task OpenCommandPalette()
+    {
+        if (!_commandPaletteOpen)
+        {
+            var options = new DialogOptions()
+            {
+                NoHeader = true,
+                MaxWidth = MaxWidth.Medium,
+                FullWidth = true,
+            };
+            
+            var commandPalette = _dialogService.Show<CommandPalette>("", options);
+            _commandPaletteOpen = true;
+
+            await commandPalette.Result;
+            _commandPaletteOpen = false;
+        }
     }
 
 }

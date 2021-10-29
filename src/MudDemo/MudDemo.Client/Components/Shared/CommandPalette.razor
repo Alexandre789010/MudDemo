@@ -1,0 +1,54 @@
+@using Toolbelt.Blazor.HotKeys
+@implements IDisposable
+@inject IDialogService _dialogService
+@inject HotKeys _hotKeys
+
+<MudDialog DisableSidePadding="true">
+    <DialogContent>
+        <MudContainer>
+            <div class="d-flex">
+                <MudTextField @bind-Value="@_search"
+                              Clearable="true"
+                              Placeholder="Search..."
+                              Variant="Variant.Outlined" 
+                              />
+            </div>
+            <MudDivider Class="my-4" />
+            <MudList Clickable="true"
+                     Style="max-height: 300px; overflow-y: auto">
+                <MudListItem Text="Page 1..." />
+                <MudListItem Text="Page 2..." />
+                <MudListItem Text="Page 3..." />
+                <MudListItem Text="Page 4..." />
+                <MudListItem Text="Page 1..." />
+                <MudListItem Text="Page 2..." />
+                <MudListItem Text="Page 3..." />
+                <MudListItem Text="Page 4..." />
+                <MudListItem Text="Page 1..." />
+                <MudListItem Text="Page 2..." />
+                <MudListItem Text="Page 3..." />
+                <MudListItem Text="Page 4..." />
+            </MudList>
+        </MudContainer>
+    </DialogContent>
+</MudDialog>
+
+@code {
+
+    private HotKeysContext? _hotKeysContext;
+    private string _search;
+
+    [CascadingParameter]
+    MudDialogInstance MudDialog { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _hotKeysContext = _hotKeys.CreateContext().Add(ModKeys.None, Keys.ESC, () => MudDialog.Close(), "Close command palette.");
+    }
+
+    public void Dispose()
+    {
+        _hotKeysContext?.Dispose();
+    }
+
+}
