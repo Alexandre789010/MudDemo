@@ -10,6 +10,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.2.21480.10" />
         <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.2.21480.10" PrivateAssets="all" />
         <PackageReference Include="MudBlazor" Version="5.2.0-rc5" />
+        <PackageReference Include="Toolbelt.Blazor.HotKeys" Version="11.1.1" />
     </ItemGroup>
 
     <ItemGroup>
