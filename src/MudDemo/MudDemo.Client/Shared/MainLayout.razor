@@ -1,9 +1,11 @@
 @inherits LayoutComponentBase
 @using Toolbelt.Blazor.HotKeys
+@using Blazored.LocalStorage
+@using MudDemo.Client.Models
 @implements IDisposable
 @inject IDialogService _dialogService
 @inject HotKeys _hotKeys
-
+@inject ILocalStorageService _localStorage
 
 <MudDialogProvider />
 <MudSnackbarProvider />
@@ -12,11 +14,12 @@
 <MudLayout >
     <MudAppBar Class="px-8"
                Elevation="0"
-               Style="background: rgba(255,255,255,0.7)">
+               Style="@(_themeManager.IsDarkMode ? "background: rgba(21,27,34,0.7)" : "background: rgba(255,255,255,0.7)")">
         @if (!_canMiniDrawer)
         {
             <MudHidden Breakpoint="Breakpoint.MdAndUp">
-                <MudTooltip Text="Toggle menu">
+                <MudTooltip Arrow="true"
+                            Text="Toggle menu">
                     <MudIconButton Class="mr-3"
                                    Color="Color.Default"
                                    Edge="Edge.Start"
@@ -25,34 +28,40 @@
                 </MudTooltip>
             </MudHidden>
         }
-        <MudTooltip Text="Search (Cmd + K)">
+        <MudTooltip Arrow="true"
+                    Text="Search (Cmd + K)">
             <MudIconButton Color="Color.Default"
                            Edge="Edge.Start"
                            Icon="@Icons.Material.Filled.Search"
-                           OnClick="OpenCommandPalette"/>
+                           OnClick="OpenCommandPalette" />
         </MudTooltip>
         <MudSpacer />
-        <MudTooltip Text="Navigate to GitHub">
+        <MudTooltip Arrow="true"
+                    Text="Navigate to GitHub">
             <MudIconButton Class="mx-3"
                            Color="Color.Default"
                            Icon="@Icons.Custom.Brands.GitHub"
                            Link="https://github.com/Alexandre789010/MudDemo"
                            Target="_blank" />
         </MudTooltip>
-        <MudBadge Class="mx-3"
-                  Color="Color.Error"
-                  Dot="true"
-                  Overlap="true">
-            <MudIconButton Color="Color.Default"
-                           Icon="@Icons.Material.Filled.Notifications" />
-        </MudBadge>
+        <MudTooltip Arrow="true"
+                    Text="Notifications">
+            <MudBadge Class="mx-3"
+                      Color="Color.Error"
+                      Dot="true"
+                      Overlap="true">
+                <MudIconButton Color="Color.Default"
+                               Icon="@Icons.Material.Filled.Notifications" />
+            </MudBadge>
+        </MudTooltip>
         <UserMenu Class="ml-3" />
     </MudAppBar>
     <MudDrawer @bind-Open="@_sideDrawerOpen"
                Breakpoint="Breakpoint.Md"
-               Elevation="1"
+               Elevation="0"
                MiniWidth="100px"
                OpenMiniOnHover="true"
+               Style="border-right: 1px solid var(--mud-palette-table-lines)"
                Variant="@(_canMiniDrawer ? DrawerVariant.Mini : DrawerVariant.Responsive)"
                Width="280px">
         <MudDrawerHeader Class="align-center d-flex justify-center pa-0">
@@ -64,20 +73,26 @@
             @if (_sideDrawerOpen)
             {
                 <MudSpacer />
-                <MudTooltip Text="Allow mini">
+                <MudTooltip Arrow="true"
+                            Text="Mini Menu">
                     <MudToggleIconButton @bind-Toggled="_canMiniDrawer"
                                          Class="mr-2"
                                          Color="@Color.Error"
                                          Icon="@Icons.Material.Filled.MenuOpen"
                                          Size="Size.Small"
-                                         ToggledColor="@Color.Success"
+                                         ToggledColor="@Color.Primary"
                                          ToggledIcon="@Icons.Material.Filled.MenuOpen"
                                          ToggledSize="Size.Small" />
                 </MudTooltip>
             }
         </MudDrawerHeader>
-        <SideMenu SideDrawerOpen="_sideDrawerOpen"/>
+        <SideMenu SideDrawerOpen="_sideDrawerOpen" />
     </MudDrawer>
+    <ThemesMenu ThemeManager="_themeManager"
+                 ThemeManagerChanged="ThemeManagerChanged"
+                 ThemingDrawerOpen="_themingDrawerOpen"
+                 ThemingDrawerOpenChanged="ThemingDrawerOpenChanged" />
+    <ThemesButton OnClick="@((e) => ThemingDrawerOpenChanged(true))"/>
     <MudMainContent>
         <MudContainer Class="mb-16 mt-4">
             @Body
@@ -86,7 +101,33 @@
 </MudLayout>
 
 @code{
-    
+
+    private readonly Palette _darkPalette = new()
+    {
+        Black = "#27272f",
+        Background = "rgb(21,27,34)",
+        BackgroundGrey = "#27272f",
+        Surface = "#373740",
+        DrawerBackground = "rgb(21,27,34)",
+        DrawerText = "rgba(255,255,255, 0.50)",
+        DrawerIcon = "rgba(255,255,255, 0.50)",
+        AppbarBackground = "#27272f",
+        AppbarText = "rgba(255,255,255, 0.70)",
+        TextPrimary = "rgba(255,255,255, 0.70)",
+        TextSecondary = "rgba(255,255,255, 0.50)",
+        ActionDefault = "#adadb1",
+        ActionDisabled = "rgba(255,255,255, 0.26)",
+        ActionDisabledBackground = "rgba(255,255,255, 0.12)",
+        Divider = "rgba(255,255,255, 0.12)",
+        DividerLight = "rgba(255,255,255, 0.06)",
+        TableLines = "rgba(255,255,255, 0.12)",
+        LinesDefault = "rgba(255,255,255, 0.12)",
+        LinesInputs = "rgba(255,255,255, 0.3)",
+        TextDisabled = "rgba(255,255,255, 0.2)"
+    };
+
+    private readonly Palette _lightPalette = new();
+
     private readonly MudTheme _theme = new()
     {
         Palette = new Palette
@@ -111,13 +152,25 @@
         }
     };
 
+    private ThemeManagerModel _themeManager = new()
+    {
+        IsDarkMode = false,
+        PrimaryColor = Colors.Green.Default
+    };
+
     private bool _sideDrawerOpen;
+    private bool _themingDrawerOpen;
     private bool _canMiniDrawer = true;
     private HotKeysContext? _hotKeysContext;
     private bool _commandPaletteOpen;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
+        if (await _localStorage.ContainKeyAsync("themeManager"))
+            _themeManager = await _localStorage.GetItemAsync<ThemeManagerModel>("themeManager");
+
+        await ThemeManagerChanged(_themeManager);
+
         _hotKeysContext = _hotKeys.CreateContext().Add(ModKeys.Meta, Keys.K, OpenCommandPalette, "Open command palette.");
     }
 
@@ -125,29 +178,49 @@
     {
         _hotKeysContext?.Dispose();
     }
-    
+
     private void ToggleMenu()
     {
         _sideDrawerOpen = !_sideDrawerOpen;
+    }
+
+    private void ThemingDrawerOpenChanged(bool value)
+    {
+        _themingDrawerOpen = value;
+    }
+
+    private async Task ThemeManagerChanged(ThemeManagerModel themeManager)
+    {
+        _themeManager = themeManager;
+
+        _theme.Palette = _themeManager.IsDarkMode ? _darkPalette : _lightPalette;
+        _theme.Palette.Primary = _themeManager.PrimaryColor;
+
+        await UpdateThemeManagerLocalStorage();
     }
 
     private async Task OpenCommandPalette()
     {
         if (!_commandPaletteOpen)
         {
-            var options = new DialogOptions()
+            var options = new DialogOptions
             {
                 NoHeader = true,
                 MaxWidth = MaxWidth.Medium,
-                FullWidth = true,
+                FullWidth = true
             };
-            
+
             var commandPalette = _dialogService.Show<CommandPalette>("", options);
             _commandPaletteOpen = true;
 
             await commandPalette.Result;
             _commandPaletteOpen = false;
         }
+    }
+
+    private async Task UpdateThemeManagerLocalStorage()
+    {
+        await _localStorage.SetItemAsync("themeManager", _themeManager);
     }
 
 }
