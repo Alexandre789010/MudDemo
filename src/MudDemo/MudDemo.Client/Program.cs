@@ -1,7 +1,11 @@
+using System;
+using System.Net.Http;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using MudDemo.Client;
+using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
+using MudDemo.Client;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -12,5 +16,6 @@ builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.H
 
 builder.Services.AddMudServices();
 builder.Services.AddHotKeys();
+builder.Services.AddBlazoredLocalStorage();
 
 await builder.Build().RunAsync();
