@@ -26,13 +26,7 @@ public partial class ThemesMenu
     [EditorRequired] [Parameter] public EventCallback<bool> ThemingDrawerOpenChanged { get; set; }
     [EditorRequired] [Parameter] public ThemeManagerModel ThemeManager { get; set; }
     [EditorRequired] [Parameter] public EventCallback<ThemeManagerModel> ThemeManagerChanged { get; set; }
-    
-    private async Task UpdateThemingDrawerOpenValue()
-    {
-        ThemingDrawerOpen = false;
-        await ThemingDrawerOpenChanged.InvokeAsync(false);
-    }
-    
+
     private async Task UpdateThemePrimaryColor(string color)
     {
         ThemeManager.PrimaryColor = color;
