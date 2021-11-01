@@ -1,21 +1,24 @@
 <MudMenu AnchorOrigin="Origin.BottomRight"
          Class="@Class"
          LockScroll="true"
-         Style="@Style"
          TransformOrigin="Origin.TopRight">
     <ActivatorContent>
-        <MudAvatar Image="./sample-data/avatar.png" />
+        <MudAvatar Image="@User.Avatar" />
     </ActivatorContent>
     <ChildContent>
         <div class="py-4"
              style="min-width: 220px">
-            <MudText Class="px-6"
+            <MudText Class="px-6 pb-2"
                      Typo="Typo.body2">
-                <b>MudDemo</b>
+                <b>@User.DisplayName</b>
             </MudText>
-            <MudText Class="px-6"
+            <MudText Class="px-6 pb-2"
                      Typo="Typo.body2">
-                muddemo@demo.com
+                @User.Email
+            </MudText>
+            <MudText Class="px-6 pb-2"
+                     Typo="Typo.caption">
+                @User.Role
             </MudText>
             <MudDivider Class="my-2" />
             <MudMenuItem >
@@ -43,13 +46,3 @@
         </div>
     </ChildContent>
 </MudMenu>
-
-@code {
-
-    [Parameter]
-    public string Class { get; set; }
-
-    [Parameter]
-    public string Style { get; set; }
-
-}
