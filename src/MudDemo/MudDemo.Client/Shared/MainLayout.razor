@@ -24,7 +24,7 @@
                                    Color="Color.Default"
                                    Edge="Edge.Start"
                                    Icon="@Icons.Material.Filled.Menu"
-                                   OnClick="ToggleMenu" />
+                                   OnClick="ToggleSideMenuDrawer" />
                 </MudTooltip>
             </MudHidden>
         }
@@ -61,11 +61,9 @@
               @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
               User="_user"/> 
     
-    <ThemesMenu ThemeManager="_themeManager"
-                 ThemeManagerChanged="ThemeManagerChanged"
-                 ThemingDrawerOpen="_themingDrawerOpen"
-                 ThemingDrawerOpenChanged="ThemingDrawerOpenChanged"/>
-    <ThemesButton OnClick="@((e) => ThemingDrawerOpenChanged(true))"/>
+    <ThemesMenu @bind-ThemeManager="_themeManager"
+                @bind-ThemingDrawerOpen="_themingDrawerOpen"/>
+    <ThemesButton OnClick="@(() => _themingDrawerOpen = true)"/>
     
     <MudMainContent>
         <MudContainer Class="mb-16 mt-4">
@@ -140,10 +138,10 @@
         Role = "Admin"
     };
     
+    private HotKeysContext? _hotKeysContext;
     private bool _sideMenuDrawerOpen;
     private bool _themingDrawerOpen;
     private bool _canMiniSideMenuDrawer = true;
-    private HotKeysContext? _hotKeysContext;
     private bool _commandPaletteOpen;
 
     protected override async Task OnInitializedAsync()
@@ -161,14 +159,9 @@
         _hotKeysContext?.Dispose();
     }
 
-    private void ToggleMenu()
+    private void ToggleSideMenuDrawer()
     {
         _sideMenuDrawerOpen = !_sideMenuDrawerOpen;
-    }
-
-    private void ThemingDrawerOpenChanged(bool value)
-    {
-        _themingDrawerOpen = value;
     }
 
     private async Task ThemeManagerChanged(ThemeManagerModel themeManager)

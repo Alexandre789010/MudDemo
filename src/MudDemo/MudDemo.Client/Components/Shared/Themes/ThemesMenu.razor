@@ -10,7 +10,7 @@
         <MudSpacer />
         <MudIconButton Color="Color.Default"
                        Icon="@Icons.Material.Filled.Close"
-                       OnClick="UpdateThemingDrawerOpenValue"
+                       OnClick="@(() => ThemingDrawerOpenChanged.InvokeAsync(false))"
                        Size="Size.Small" />
     </MudDrawerHeader>
     <MudDivider />
@@ -67,11 +67,12 @@
     </div>
 </MudDrawer>
 
-<MudOverlay @bind-Visible="ThemingDrawerOpen"
-            DarkBackground="false"
-            OnClick="UpdateThemingDrawerOpenValue" />
-            
-            
+<MudOverlay DarkBackground="false"
+            OnClick="@(() => ThemingDrawerOpenChanged.InvokeAsync(false))"
+            Visible="ThemingDrawerOpen"
+            VisibleChanged="ThemingDrawerOpenChanged" />
+
+
 <style>
 
     .mode-button {
