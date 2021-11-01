@@ -4,7 +4,7 @@ using Toolbelt.Blazor.HotKeys;
 
 namespace MudDemo.Client.Components.Shared;
 
-public partial class CommandPalette
+public partial class CommandPalette : IDisposable
 {
     private HotKeysContext? _hotKeysContext;
     private string _search;
