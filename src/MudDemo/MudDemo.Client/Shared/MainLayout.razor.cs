@@ -50,11 +50,7 @@ public partial class MainLayout : IDisposable
         {
             Default = new Default
             {
-                FontFamily = new[] {"Roboto", "Helvetica", "Arial", "sans-serif"},
-                FontWeight = 400,
                 FontSize = "0.9rem",
-                LineHeight = 1.43,
-                LetterSpacing = ".01071em"
             }
         }
     };
