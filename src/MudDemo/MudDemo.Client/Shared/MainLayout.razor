@@ -56,15 +56,16 @@
         </MudTooltip>
         <UserMenu Class="ml-3" />
     </MudAppBar>
-    
-    <SideMenu @bind-SideMenuDrawerOpen="_sideMenuDrawerOpen"
-              @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
-              User="_user"/> 
-    
-    <ThemesMenu @bind-ThemeManager="_themeManager"
-                @bind-ThemingDrawerOpen="_themingDrawerOpen"/>
-    <ThemesButton OnClick="@(() => _themingDrawerOpen = true)"/>
-    
+
+    <SideMenu @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
+              @bind-SideMenuDrawerOpen="_sideMenuDrawerOpen"
+              User="_user" />
+
+    <ThemesMenu @bind-ThemingDrawerOpen="_themingDrawerOpen"
+                ThemeManager="_themeManager"
+                ThemeManagerChanged="ThemeManagerChanged" />
+    <ThemesButton OnClick="@(() => _themingDrawerOpen = true)" />
+
     <MudMainContent>
         <MudContainer Class="mb-16 mt-4">
             @Body
@@ -130,14 +131,14 @@
         PrimaryColor = Colors.Green.Default
     };
 
-    private UserModel _user = new()
+    private readonly UserModel _user = new()
     {
         Avatar = "./sample-data/avatar.png",
         DisplayName = "MudDemo",
         Email = "muddemo@demo.com.au",
         Role = "Admin"
     };
-    
+
     private HotKeysContext? _hotKeysContext;
     private bool _sideMenuDrawerOpen;
     private bool _themingDrawerOpen;
