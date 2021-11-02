@@ -1,0 +1,45 @@
+<MudAppBar Class="px-8"
+           Elevation="0"
+           Style="@(ThemeManager.IsDarkMode ? "background: rgba(21,27,34,0.7)" : "background: rgba(255,255,255,0.7)")">
+    @if (!CanMiniSideMenuDrawer)
+    {
+        <MudHidden Breakpoint="Breakpoint.MdAndUp">
+            <MudTooltip Arrow="true"
+                        Text="Toggle menu">
+                <MudIconButton Class="mr-3"
+                               Color="Color.Default"
+                               Edge="Edge.Start"
+                               Icon="@Icons.Material.Filled.Menu"
+                               OnClick="ToggleSideMenuDrawer"/>
+            </MudTooltip>
+        </MudHidden>
+    }
+    <MudTooltip Arrow="true"
+                Text="Search (Cmd + K)">
+        <MudIconButton Color="Color.Default"
+                       Edge="Edge.Start"
+                       Icon="@Icons.Material.Filled.Search"
+                       OnClick="OpenCommandPalette" />
+    </MudTooltip>
+    <MudSpacer />
+    <MudTooltip Arrow="true"
+                Text="Navigate to GitHub">
+        <MudIconButton Class="mx-3"
+                       Color="Color.Default"
+                       Icon="@Icons.Custom.Brands.GitHub"
+                       Link="https://github.com/Alexandre789010/MudDemo"
+                       Target="_blank" />
+    </MudTooltip>
+    <MudTooltip Arrow="true"
+                Text="Notifications">
+        <MudBadge Class="mx-3"
+                  Color="Color.Error"
+                  Dot="true"
+                  Overlap="true">
+            <MudIconButton Color="Color.Default"
+                           Icon="@Icons.Material.Filled.Notifications" />
+        </MudBadge>
+    </MudTooltip>
+    <UserMenu Class="ml-3"
+              User="User"/>
+</MudAppBar>

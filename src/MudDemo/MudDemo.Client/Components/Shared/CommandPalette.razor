@@ -1,0 +1,18 @@
+<MudDialog DisableSidePadding="true">
+    <DialogContent>
+        <MudContainer>
+                <MudTextField @bind-Value="@_search"
+                              Clearable="true"
+                              Placeholder="Search..."
+                              Class="mb-3"
+                />
+            <MudList Clickable="true"
+                     Style="height: 300px; overflow-y: auto">
+                <MudListItem Text="Page 1..." />
+                <MudListItem Text="Page 2..." />
+                <MudListItem Text="Page 3..." />
+                <MudListItem Text="Page 4..." />
+            </MudList>
+        </MudContainer>
+    </DialogContent>
+</MudDialog>

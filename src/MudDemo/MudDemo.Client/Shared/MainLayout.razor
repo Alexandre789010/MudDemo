@@ -1,0 +1,28 @@
+@inherits LayoutComponentBase;
+
+<MudDialogProvider />
+<MudSnackbarProvider />
+<MudThemeProvider Theme="_theme" />
+
+<MudLayout >
+    <NavMenu CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
+             OpenCommandPalette="OpenCommandPalette"
+             ThemeManager="_themeManager"
+             ToggleSideMenuDrawer="ToggleSideMenuDrawer"
+             User="_user" />
+
+    <SideMenu @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
+              @bind-SideMenuDrawerOpen="_sideMenuDrawerOpen"
+              User="_user" />
+
+    <ThemesMenu @bind-ThemingDrawerOpen="_themingDrawerOpen"
+                ThemeManager="_themeManager"
+                ThemeManagerChanged="ThemeManagerChanged" />
+    <ThemesButton OnClick="@(() => _themingDrawerOpen = true)" />
+
+    <MudMainContent>
+        <MudContainer Class="mb-16 mt-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
