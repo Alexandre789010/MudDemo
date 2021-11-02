@@ -68,7 +68,8 @@
             {
                 <div class="ml-6 my-3">
                     <MudText Typo="Typo.caption">
-                        <b>@(section.Title)
+                        <b>
+                            @(section.Title)
                         </b>
                     </MudText>
                 </div>
@@ -78,8 +79,8 @@
             {
                 @if (sectionItem.IsParent)
                 {
-                    <MudNavGroup Title="@sectionItem.Title"
-                                 Icon="@sectionItem.Icon">
+                    <MudNavGroup Icon="@sectionItem.Icon"
+                                 Title="@sectionItem.Title">
                         @foreach (var menuItem in sectionItem.MenuItems)
                         {
                             @if (SideMenuDrawerOpen)
@@ -98,7 +99,7 @@
                                 Icon="@(sectionItem.Icon)"
                                 Match="NavLinkMatch.All">
                         @sectionItem.Title
-                    </MudNavLink>   
+                    </MudNavLink>
                 }
             }
         }
