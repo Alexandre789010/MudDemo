@@ -37,14 +37,18 @@
             <MudButton Class="d-flex justify-start my-6 user-button"
                        FullWidth="true">
                 <ChildContent>
-                    <div class="d-flex justify-start px-4 py-2">
-                        <div>
-                            <MudAvatar Image="@User.Avatar" />
-                        </div>
-                        <div class="px-4">
-                            <MudText Typo="Typo.body2">@User.DisplayName</MudText>
-                            <MudText Typo="Typo.caption">@User.Role</MudText>
-                        </div>
+                    <div class="align-center d-flex">
+                        <MudAvatar Image="@User.Avatar" />
+                    </div>
+                    <div class="d-flex flex-column px-4">
+                        <MudText Class="d-flex justify-start"
+                                 Typo="Typo.body2">
+                            @User.DisplayName
+                        </MudText>
+                        <MudText Class="d-flex justify-start"
+                                 Typo="Typo.caption">
+                            @User.Role
+                        </MudText>
                     </div>
                 </ChildContent>
             </MudButton>
@@ -64,7 +68,8 @@
             {
                 <div class="ml-6 my-3">
                     <MudText Typo="Typo.caption">
-                        <b>@(section.Title)
+                        <b>
+                            @(section.Title)
                         </b>
                     </MudText>
                 </div>
@@ -74,14 +79,17 @@
             {
                 @if (sectionItem.IsParent)
                 {
-                    <MudNavGroup Title="@sectionItem.Title"
-                                 Icon="@sectionItem.Icon">
+                    <MudNavGroup Icon="@sectionItem.Icon"
+                                 Title="@sectionItem.Title">
                         @foreach (var menuItem in sectionItem.MenuItems)
                         {
-                            <MudNavLink Href="@(menuItem.Href)"
-                                        Match="NavLinkMatch.All">
-                                @menuItem.Title
-                            </MudNavLink>  
+                            @if (SideMenuDrawerOpen)
+                            {
+                                <MudNavLink Href="@(menuItem.Href)"
+                                            Match="NavLinkMatch.All">
+                                    @menuItem.Title
+                                </MudNavLink>   
+                            }
                         }
                     </MudNavGroup>
                 }
@@ -91,7 +99,7 @@
                                 Icon="@(sectionItem.Icon)"
                                 Match="NavLinkMatch.All">
                         @sectionItem.Title
-                    </MudNavLink>   
+                    </MudNavLink>
                 }
             }
         }
