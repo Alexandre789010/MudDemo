@@ -37,14 +37,18 @@
             <MudButton Class="d-flex justify-start my-6 user-button"
                        FullWidth="true">
                 <ChildContent>
-                    <div class="d-flex justify-start px-4 py-2">
-                        <div>
-                            <MudAvatar Image="@User.Avatar" />
-                        </div>
-                        <div class="px-4">
-                            <MudText Typo="Typo.body2">@User.DisplayName</MudText>
-                            <MudText Typo="Typo.caption">@User.Role</MudText>
-                        </div>
+                    <div class="align-center d-flex">
+                        <MudAvatar Image="@User.Avatar" />
+                    </div>
+                    <div class="d-flex flex-column px-4">
+                        <MudText Class="d-flex justify-start"
+                                 Typo="Typo.body2">
+                            @User.DisplayName
+                        </MudText>
+                        <MudText Class="d-flex justify-start"
+                                 Typo="Typo.caption">
+                            @User.Role
+                        </MudText>
                     </div>
                 </ChildContent>
             </MudButton>
