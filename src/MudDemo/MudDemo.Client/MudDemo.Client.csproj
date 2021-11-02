@@ -23,6 +23,9 @@
         <Content Update="wwwroot\sample-data\avatar.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
+        <Content Update="wwwroot\favicon.ico">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>
