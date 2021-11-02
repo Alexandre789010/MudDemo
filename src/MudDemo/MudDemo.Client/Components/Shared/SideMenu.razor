@@ -82,10 +82,13 @@
                                  Icon="@sectionItem.Icon">
                         @foreach (var menuItem in sectionItem.MenuItems)
                         {
-                            <MudNavLink Href="@(menuItem.Href)"
-                                        Match="NavLinkMatch.All">
-                                @menuItem.Title
-                            </MudNavLink>  
+                            @if (SideMenuDrawerOpen)
+                            {
+                                <MudNavLink Href="@(menuItem.Href)"
+                                            Match="NavLinkMatch.All">
+                                    @menuItem.Title
+                                </MudNavLink>   
+                            }
                         }
                     </MudNavGroup>
                 }
