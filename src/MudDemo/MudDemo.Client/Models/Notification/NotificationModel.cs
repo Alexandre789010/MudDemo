@@ -24,6 +24,7 @@ public class NotificationModel
 
     public string Message { get; set; }
     public DateTime DateTimeStamp { get; set; }
+    public bool IsActive { get; set; }
 
     public string TimeSinceEventFormatted
     {
