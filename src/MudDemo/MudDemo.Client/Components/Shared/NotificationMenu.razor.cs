@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
+using MudBlazor;
+using MudBlazor.Utilities;
 using MudDemo.Client.Models.Notification;
 
 namespace MudDemo.Client.Components.Shared;
 
-public partial class NotificationMenu
+public partial class NotificationMenu : MudComponentBase
 {
     private List<NotificationModel> _notifications = new()
     {
@@ -33,5 +36,8 @@ public partial class NotificationMenu
         }
     };
 
-    [Parameter] public string Class { get; set; }
+    private string Classname =>
+        new CssBuilder()
+            .AddClass(Class)
+            .Build();
 }
