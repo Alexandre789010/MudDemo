@@ -1,20 +1,25 @@
 @inherits MudComponentBase
 
-<MudElement Class="@Classname"
-            Style="@Style"
-            @attributes="@UserAttributes">
+<MudElement @attributes="@UserAttributes"
+            Class="@Classname"
+            Style="@Style">
     <MudMenu AnchorOrigin="Origin.BottomRight"
              LockScroll="true"
              TransformOrigin="Origin.TopRight">
         <ActivatorContent>
             <MudTooltip Arrow="true"
                         Text="Notifications">
-                <MudBadge Color="Color.Error"
-                          Dot="true"
-                          Overlap="true">
-                    <MudIconButton Color="Color.Default"
-                                   Icon="@Icons.Material.Filled.Notifications" />
-                </MudBadge>
+                @if (Notifications != null)
+                {
+                    <MudBadge BadgeClass="notification-badge"
+                              Color="Color.Error"
+                              Content="Notifications.Count()"
+                              Overlap="true"
+                              Visible="Notifications.Any()">
+                        <MudIconButton Color="Color.Default"
+                                       Icon="@Icons.Material.Filled.Notifications" />
+                    </MudBadge>
+                }
             </MudTooltip>
         </ActivatorContent>
         <ChildContent>
@@ -25,9 +30,9 @@
                     <b>Notifications</b>
                 </MudText>
                 <MudDivider Class="my-2" />
-                @if (_notifications.Any())
+                @if (Notifications != null && Notifications.Any())
                 {
-                    @foreach (var notification in _notifications)
+                    @foreach (var notification in Notifications)
                     {
                         <MudMenuItem>
                             <div class="d-flex">
@@ -39,11 +44,11 @@
                                 </div>
                                 <div>
                                     <MudText Typo="Typo.body2">@notification.Message</MudText>
-                                    <div class="d-flex align-center">
-                                        <MudIcon Icon="@Icons.Material.Filled.AccessTime"
+                                    <div class="align-center d-flex">
+                                        <MudIcon Class="mr-1"
                                                  Color="Color.Default"
-                                                 Style="font-size: 13px"
-                                                 Class="mr-1" />
+                                                 Icon="@Icons.Material.Filled.AccessTime"
+                                                 Style="font-size: 13px" />
                                         <MudText Typo="Typo.caption">@notification.TimeSinceEventFormatted</MudText>
                                     </div>
                                 </div>
@@ -53,8 +58,8 @@
                 }
                 else
                 {
-                    <MudText Typo="Typo.body2"
-                             Class="px-6 py-3">
+                    <MudText Class="px-6 py-3"
+                             Typo="Typo.body2">
                         You have no unread notifications.
                     </MudText>
                 }
@@ -62,9 +67,9 @@
                 <div class="mt-4 mx-4">
                     <MudButton Color="Color.Primary"
                                FullWidth="true"
+                               OnClick="OnClickViewAll"
                                Style="text-transform:none"
-                               Variant="Variant.Text"
-                               OnClick="OnClickViewAll">
+                               Variant="Variant.Text">
                         View All
                     </MudButton>
                 </div>
@@ -72,3 +77,12 @@
         </ChildContent>
     </MudMenu>
 </MudElement>
+
+<style>
+
+    .notification-badge{
+        margin-left: -10px;
+        margin-bottom: -8px;
+    }
+    
+</style>
