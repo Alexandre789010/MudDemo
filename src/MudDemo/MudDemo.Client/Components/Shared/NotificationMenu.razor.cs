@@ -40,4 +40,7 @@ public partial class NotificationMenu : MudComponentBase
         new CssBuilder()
             .AddClass(Class)
             .Build();
+    
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClickViewAll { get; set; }
 }
