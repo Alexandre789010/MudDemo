@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using MudDemo.Client;
+using MudDemo.Client.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
@@ -17,5 +18,7 @@ builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri(builder.H
 builder.Services.AddMudServices();
 builder.Services.AddHotKeys();
 builder.Services.AddBlazoredLocalStorage();
+
+builder.Services.AddTransient<INotificationsService, NotificationsService>();
 
 await builder.Build().RunAsync();

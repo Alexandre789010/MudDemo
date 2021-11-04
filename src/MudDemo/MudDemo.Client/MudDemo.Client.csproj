@@ -17,6 +17,7 @@
     <ItemGroup>
         <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css" />
         <_ContentIncludedByDefault Remove="wwwroot\css\bootstrap\bootstrap.min.css.map" />
+        <_ContentIncludedByDefault Remove="Components\Shared\Notification\NotificationItem.razor" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,6 +25,9 @@
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
         <Content Update="wwwroot\favicon.ico">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+        <Content Update="wwwroot\sample-data\notifications.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
