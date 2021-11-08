@@ -30,6 +30,9 @@
         <Content Update="wwwroot\sample-data\notifications.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Content Update="wwwroot\js\apex-chart-wrapper.js">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 
 </Project>
