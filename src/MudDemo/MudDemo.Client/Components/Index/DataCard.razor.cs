@@ -8,6 +8,7 @@ using MudDemo.Client.Models.Charts.PlotOptions;
 using MudDemo.Client.Models.Charts.Series;
 using MudDemo.Client.Models.Charts.Stroke;
 using MudDemo.Client.Models.Charts.Tooltip;
+using MudDemo.Client.Models.Charts.YAxis;
 
 namespace MudDemo.Client.Components.Index;
 
@@ -42,7 +43,8 @@ public partial class DataCard : MudComponentBase
                 Toolbar = new ChartModel.ToolbarModel
                 {
                     Show = false
-                }
+                },
+                Id = ChartId,
             },
             Colors = new List<string> {BarColor},
             Series = new List<SeriesModel<int>>
@@ -72,6 +74,10 @@ public partial class DataCard : MudComponentBase
             DataLabels = new DataLabelsModel
             {
                 Enabled = false
+            },
+            YAxis = new YAxisModel()
+            {
+                Max = 50
             }
         };
     }
