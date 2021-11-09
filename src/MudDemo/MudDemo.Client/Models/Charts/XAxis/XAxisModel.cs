@@ -54,7 +54,7 @@ public class XAxisModel<TCategory>
 
         public class StyleModel
         {
-            // [JsonPropertyName("colors")] public List<string> Colors { get; set; } = new(); // TODO...
+            [JsonPropertyName("colors")] public string Colors { get; set; } = "var(--mud-palette-text-primary)"; // TODO...
             [JsonPropertyName("fontSize")] public string FontSize { get; set; } = "12px";
             [JsonPropertyName("fontFamily")] public string FontFamily { get; set; } = "Helvetica, Arial, sans-serif";
             [JsonPropertyName("fontWeight")] public string FontWeight { get; set; } = "400";

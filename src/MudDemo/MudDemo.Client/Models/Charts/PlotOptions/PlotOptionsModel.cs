@@ -199,7 +199,7 @@ public class PlotOptionsModel
                     public string FontFamily { get; set; } = "Helvetica, Arial, sans-serif";
 
                     [JsonPropertyName("fontWeight")] public string FontWeight { get; set; } = "600";
-                    [JsonPropertyName("color")] public string Color { get; set; } = "";
+                    [JsonPropertyName("color")] public string Color { get; set; } = "var(--mud-palette-text-primary)";
 
                     [JsonPropertyName("offsetY")] public int OffsetY { get; set; } = -10;
                     // TODO: Add formatter.
@@ -214,7 +214,7 @@ public class PlotOptionsModel
                     public string FontFamily { get; set; } = "Helvetica, Arial, sans-serif";
 
                     [JsonPropertyName("fontWeight")] public string FontWeight { get; set; } = "400";
-                    [JsonPropertyName("color")] public string Color { get; set; } = string.Empty;
+                    [JsonPropertyName("color")] public string Color { get; set; } = "var(--mud-palette-text-primary)";
 
                     [JsonPropertyName("offsetY")] public int OffsetY { get; set; } = 16;
                     // TODO: Add formatter.
@@ -232,7 +232,7 @@ public class PlotOptionsModel
 
                     [JsonPropertyName("fontWeight")] public string FontWeight { get; set; } = "600";
 
-                    [JsonPropertyName("color")] public string Color { get; set; } = "#373d3f";
+                    [JsonPropertyName("color")] public string Color { get; set; } = "var(--mud-palette-text-primary)";
                     // TODO: Add formatter.
                 }
             }
