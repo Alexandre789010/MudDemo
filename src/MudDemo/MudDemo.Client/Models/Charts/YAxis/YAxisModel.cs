@@ -16,7 +16,7 @@ public class YAxisModel
     [JsonPropertyName("logarithmic")] public bool Logarithmic { get; set; } = false;
     [JsonPropertyName("tickAmount")] public int TickAmount { get; set; } = 6;
 
-    [JsonPropertyName("min")] public int Min { get; set; } = 6;
+    [JsonPropertyName("min")] public int Min { get; set; } = 0;
 
     // [JsonPropertyName("max")] public int Max { get; set; } = 6; // TODO...
     [JsonPropertyName("forceNiceScale")] public bool ForceNiceScale { get; set; } = false;
@@ -32,13 +32,12 @@ public class YAxisModel
     public class LabelsModel
     {
         [JsonPropertyName("show")] public bool Show { get; set; } = true;
-        [JsonPropertyName("align")] public string Align { get; set; } = "right";
+        // [JsonPropertyName("align")] public string Align { get; set; } = "right"; // TODO: This property is causing issue (chart is pushed on the right x-axis)
         [JsonPropertyName("minWidth")] public int MinWidth { get; set; } = 0;
         [JsonPropertyName("maxWidth")] public int MaxWidth { get; set; } = 160;
         [JsonPropertyName("style")] public StyleModel Style { get; set; } = new();
         [JsonPropertyName("offsetX")] public int OffsetX { get; set; } = 0;
         [JsonPropertyName("offsetY")] public int OffsetY { get; set; } = 0;
-
         [JsonPropertyName("rotate")] public int Rotate { get; set; } = 0;
         // TODO: Add formatter
 

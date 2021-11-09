@@ -36,13 +36,13 @@ public class GridModel
 
     public class RowModel
     {
-        [JsonPropertyName("colors")] public List<string> Colors { get; set; } = new(); // TODO...
+        //[JsonPropertyName("colors")] public List<string> Colors { get; set; } = new(); // TODO...
         [JsonPropertyName("opacity")] public double Opacity { get; set; } = 0.5;
     }
 
     public class ColumnModel
     {
-        [JsonPropertyName("colors")] public List<string> Colors { get; set; } = new(); // TODO...
+        //[JsonPropertyName("colors")] public List<string> Colors { get; set; } = new(); // TODO...
         [JsonPropertyName("opacity")] public double Opacity { get; set; } = 0.5;
     }
 
