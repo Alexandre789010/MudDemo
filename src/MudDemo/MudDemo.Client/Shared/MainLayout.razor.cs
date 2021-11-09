@@ -14,7 +14,7 @@ public partial class MainLayout : IDisposable
         Black = "#27272f",
         Background = "rgb(21,27,34)",
         BackgroundGrey = "#27272f",
-        Surface = "#373740",
+        Surface = "#212B36",
         DrawerBackground = "rgb(21,27,34)",
         DrawerText = "rgba(255,255,255, 0.50)",
         DrawerIcon = "rgba(255,255,255, 0.50)",
