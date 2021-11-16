@@ -1,11 +1,16 @@
+using Newtonsoft.Json;
+
 namespace MudDemo.Client.Models.Article;
 
 public class ArticlePreviewModel
 {
+    [JsonProperty]
     public int ArticleId { get; set; }
+    [JsonProperty]
     public string Title { get; set; }
+    [JsonProperty]
     public string Description { get; set; }
-
+    [JsonProperty]
     public string DescriptionTrimed
     {
         get
@@ -17,5 +22,6 @@ public class ArticlePreviewModel
 
             return Description;
         }
+        set => DescriptionTrimed = value;
     }
 }
