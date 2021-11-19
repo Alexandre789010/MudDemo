@@ -22,6 +22,5 @@ public class ArticlePreviewModel
 
             return Description;
         }
-        set => DescriptionTrimed = value;
     }
 }

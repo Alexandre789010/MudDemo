@@ -20,7 +20,7 @@ public partial class ArticleCarousel : MudComponentBase
             .Build();
     protected override async Task OnInitializedAsync()
     {
-        _articles = await ArticlesService.GetArticles();
+        _articles = (await ArticlesService.GetArticles()).ToList();
     }
     private void NavigatePrevious()
     {

@@ -4,5 +4,5 @@ namespace MudDemo.Client.Services;
 
 public interface IArticlesService
 {
-    Task<List<ArticlePreviewModel>> GetArticles();
+    Task<IEnumerable<ArticlePreviewModel>> GetArticles();
 }

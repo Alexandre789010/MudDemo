@@ -13,9 +13,9 @@ public class ArticlesService : IArticlesService
         _httpClient = httpClient;
     }
 
-    public async Task<List<ArticlePreviewModel>> GetArticles()
+    public async Task<IEnumerable<ArticlePreviewModel>> GetArticles()
     {
-        var articles = await _httpClient.GetFromJsonAsync<List<ArticlePreviewModel>>(UriRequest);
+        var articles = await _httpClient.GetFromJsonAsync<IEnumerable<ArticlePreviewModel>>(UriRequest);
         return articles ?? throw new InvalidOperationException();
     }
 }
