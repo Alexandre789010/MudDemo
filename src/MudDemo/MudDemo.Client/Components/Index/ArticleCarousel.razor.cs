@@ -10,7 +10,7 @@ public partial class ArticleCarousel : MudComponentBase
 {
     [Inject] private IArticlesService ArticlesService { get; set; }
 
-    private List<ArticlePreviewModel> _articles;
+    private IEnumerable<ArticlePreviewModel> _articles;
 
     private int _selectedArticle = 0;
 
@@ -20,19 +20,19 @@ public partial class ArticleCarousel : MudComponentBase
             .Build();
     protected override async Task OnInitializedAsync()
     {
-        _articles = (await ArticlesService.GetArticles()).ToList();
+        _articles = await ArticlesService.GetArticles();
     }
     private void NavigatePrevious()
     {
         if (_selectedArticle == 0)
-            _selectedArticle = _articles.Count - 1;
+            _selectedArticle = _articles.Count() - 1;
         else
             _selectedArticle--;
     }
 
     private void NavigateNext()
     {
-        if (_selectedArticle == _articles.Count - 1)
+        if (_selectedArticle == _articles.Count() - 1)
             _selectedArticle = 0;
         else
             _selectedArticle++;
