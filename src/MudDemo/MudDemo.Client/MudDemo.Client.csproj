@@ -21,6 +21,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Content Update="wwwroot\sample-data\articles.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
         <Content Update="wwwroot\sample-data\avatar.png">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
