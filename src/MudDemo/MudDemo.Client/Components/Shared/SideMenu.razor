@@ -1,3 +1,5 @@
+@using MudBlazor.Extensions
+@using MudDemo.Client.Models.SideMenu
 <MudDrawer Breakpoint="Breakpoint.Md"
            Class="side-menu"
            Elevation="0"
@@ -85,9 +87,22 @@
                         {
                             @if (SideMenuDrawerOpen)
                             {
-                                <MudNavLink Href="@(menuItem.Href)"
+                                <MudNavLink Disabled="@(menuItem.PageStatus != PageStatus.Completed)"
+                                            Href="@(menuItem.Href)"
                                             Match="NavLinkMatch.All">
-                                    @menuItem.Title
+                                    <div class="d-flex">
+                                        @menuItem.Title
+                                        @if (menuItem.PageStatus != PageStatus.Completed)
+                                        {
+                                            <MudSpacer />
+                                            <MudChip Class="mr-4"
+                                                     Color="@Color.Primary"
+                                                     Size="Size.Small"
+                                                     Variant="Variant.Text">
+                                                @menuItem.PageStatus.ToDescriptionString()
+                                            </MudChip>
+                                        }
+                                    </div>
                                 </MudNavLink>
                             }
                         }
@@ -95,10 +110,23 @@
                 }
                 else
                 {
-                    <MudNavLink Href="@(sectionItem.Href)"
+                    <MudNavLink Disabled="@(sectionItem.PageStatus != PageStatus.Completed)"
+                                Href="@(sectionItem.Href)"
                                 Icon="@(sectionItem.Icon)"
                                 Match="NavLinkMatch.All">
-                        @sectionItem.Title
+                        <div class="d-flex">
+                            @sectionItem.Title
+                            @if (sectionItem.PageStatus != PageStatus.Completed)
+                            {
+                                <MudSpacer />
+                                <MudChip Class="mr-4"
+                                         Color="@Color.Primary"
+                                         Size="Size.Small"
+                                         Variant="Variant.Text">
+                                    @sectionItem.PageStatus.ToDescriptionString()
+                                </MudChip>
+                            }
+                        </div>
                     </MudNavLink>
                 }
             }
@@ -125,6 +153,12 @@
         .user-button {
             text-transform:none; 
             background: rgba(var(--mud-palette-primary-rgb), 0.1)
+        }
+        
+        .side-menu .mud-chip.mud-chip-size-small
+        {
+            font-size: 10px;
+            height: 18px;
         }
        
 </style>

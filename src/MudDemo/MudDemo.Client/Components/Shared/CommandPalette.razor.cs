@@ -18,13 +18,10 @@ public partial class CommandPalette : IDisposable
     {
         _hotKeysContext?.Dispose();
     }
-    
+
     protected override void OnInitialized()
     {
         _pages.Add("App", "/");
-        _pages.Add("E-Commerce", "/ecommerce");
-        _pages.Add("Banking", "/banking");
-        _pages.Add("Booking", "/booking");
 
         _pagesFiltered = _pages;
 

@@ -24,25 +24,29 @@ public partial class SideMenu
                 {
                     Title = "E-Commerce",
                     Icon = Icons.Material.Filled.ShoppingCart,
-                    Href = "/ecommerce"
+                    Href = "/ecommerce",
+                    PageStatus = PageStatus.Wip
                 },
                 new()
                 {
                     Title = "Analytics",
                     Icon = Icons.Material.Filled.Analytics,
-                    Href = "/analytics"
+                    Href = "/analytics",
+                    PageStatus = PageStatus.ComingSoon
                 },
                 new()
                 {
                     Title = "Banking",
                     Icon = Icons.Material.Filled.Money,
-                    Href = "/banking"
+                    Href = "/banking",
+                    PageStatus = PageStatus.ComingSoon
                 },
                 new()
                 {
                     Title = "Booking",
                     Icon = Icons.Material.Filled.CalendarToday,
-                    Href = "/booking"
+                    Href = "/booking",
+                    PageStatus = PageStatus.ComingSoon
                 }
             }
         },
@@ -62,17 +66,20 @@ public partial class SideMenu
                         new()
                         {
                             Title = "Profile",
-                            Href = "/user/profile"
+                            Href = "/user/profile",
+                            PageStatus = PageStatus.ComingSoon
                         },
                         new()
                         {
                             Title = "Cards",
-                            Href = "/user/cards"
+                            Href = "/user/cards",
+                            PageStatus = PageStatus.ComingSoon
                         },
                         new()
                         {
                             Title = "List",
-                            Href = "/user/list"
+                            Href = "/user/list",
+                            PageStatus = PageStatus.ComingSoon
                         }
                     }
                 },
@@ -86,17 +93,20 @@ public partial class SideMenu
                         new()
                         {
                             Title = "Posts",
-                            Href = "/user/posts"
+                            Href = "/user/posts",
+                            PageStatus = PageStatus.ComingSoon
                         },
                         new()
                         {
                             Title = "Post",
-                            Href = "/user/post"
+                            Href = "/user/post",
+                            PageStatus = PageStatus.ComingSoon
                         },
                         new()
                         {
                             Title = "New Post",
-                            Href = "/user/newpost"
+                            Href = "/user/newpost",
+                            PageStatus = PageStatus.ComingSoon
                         }
                     }
                 }
