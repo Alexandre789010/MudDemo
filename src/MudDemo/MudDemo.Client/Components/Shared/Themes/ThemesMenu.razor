@@ -53,16 +53,30 @@
             {
                 <MudItem xs="4">
                     <MudButton Class="@(color == ThemeManager.PrimaryColor ? "color-button color-button-selected" : "color-button")"
-                               FullWidth="true"
-                               OnClick="@(() => UpdateThemePrimaryColor(color))">
+                           FullWidth="true"
+                           OnClick="@(() => UpdateThemePrimaryColor(color))">
                         <ChildContent>
                             <div class="@(color == ThemeManager.PrimaryColor ? "oval oval-selected" : "oval")"
-                                 style="@($"background: {color};")">
+                             style="@($"background: {color};")">
                             </div>
                         </ChildContent>
                     </MudButton>
                 </MudItem>
             }
+        </MudGrid>
+        <MudText Typo="Typo.body2">
+            <b>Border Radius</b>
+        </MudText>
+        <MudGrid Class="my-3"
+                 Spacing="3">
+
+            <MudItem xs="12">
+                <MudSlider Value="@ThemeManager.BorderRadius" Min="0" Max="@MaxValue" Immediate="false" Step="1" Color="Color.Primary"
+                           @oninput="@((e) => ChangedSelection(e))">
+                    @ThemeManager.BorderRadius.ToString()
+                </MudSlider>
+            </MudItem>
+
         </MudGrid>
     </div>
 </MudDrawer>
@@ -86,18 +100,17 @@
         border-radius: 50%;
         transform: rotate(120deg);
     }
-    
-    .oval-selected{
+
+    .oval-selected {
         transform: rotate(0deg);
     }
-    
+
     .color-button {
         height: 50px;
         border: 1px solid var(--mud-palette-table-lines);
     }
-    
+
     .color-button-selected {
         border: 2px solid var(--mud-palette-primary);
     }
-    
 </style>

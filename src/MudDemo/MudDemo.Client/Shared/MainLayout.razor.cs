@@ -50,8 +50,8 @@ public partial class MainLayout : IDisposable
         {
             Default = new Default
             {
-                FontSize = "0.9rem",
-            }
+                FontSize = ".875rem",
+            },
         }
     };
 
@@ -63,11 +63,11 @@ public partial class MainLayout : IDisposable
         Role = "Admin"
     };
 
-    private bool _canMiniSideMenuDrawer = true;
+    private bool _canMiniSideMenuDrawer = false;
     private bool _commandPaletteOpen;
 
     private HotKeysContext? _hotKeysContext;
-    private bool _sideMenuDrawerOpen;
+    private bool _sideMenuDrawerOpen = true;
 
     private ThemeManagerModel _themeManager = new()
     {
@@ -107,7 +107,8 @@ public partial class MainLayout : IDisposable
 
         _theme.Palette = _themeManager.IsDarkMode ? _darkPalette : _lightPalette;
         _theme.Palette.Primary = _themeManager.PrimaryColor;
-
+        _theme.LayoutProperties.DefaultBorderRadius = _themeManager.BorderRadius + "px";
+        _theme.Typography.Default = new Default() { FontFamily = _themeManager.FontFamily };
         await UpdateThemeManagerLocalStorage();
     }
 

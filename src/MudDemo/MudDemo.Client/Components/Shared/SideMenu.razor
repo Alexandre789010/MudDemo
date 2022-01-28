@@ -3,34 +3,18 @@
 <MudDrawer Breakpoint="Breakpoint.Md"
            Class="side-menu"
            Elevation="0"
-           MiniWidth="100px"
            Open="SideMenuDrawerOpen"
            OpenChanged="@(e => SideMenuDrawerOpenChanged.InvokeAsync(e))"
-           OpenMiniOnHover="true"
            Variant="@(CanMiniSideMenuDrawer ? DrawerVariant.Mini : DrawerVariant.Responsive)"
-           Width="280px">
-    <MudDrawerHeader Class="align-center d-flex justify-center pa-0">
-        <MudIcon Class="@(SideMenuDrawerOpen ? "ml-6" : "")"
+           >
+    <MudDrawerHeader Class="align-center d-flex align-center pa-0">
+        <MudIcon Class="ml-6 mr-2"
                  Color="Color.Primary"
                  Icon="@Icons.Custom.Brands.MudBlazor"
                  Size="Size.Large" />
-
-        @if (SideMenuDrawerOpen)
-        {
-            <MudSpacer />
-            <MudTooltip Arrow="true"
-                        Text="Mini Menu">
-                <MudToggleIconButton Class="mr-2"
-                                     Color="@Color.Error"
-                                     Icon="@Icons.Material.Filled.MenuOpen"
-                                     Size="Size.Small"
-                                     Toggled="CanMiniSideMenuDrawer"
-                                     ToggledChanged="@(e => CanMiniSideMenuDrawerChanged.InvokeAsync(e))"
-                                     ToggledColor="@Color.Primary"
-                                     ToggledIcon="@Icons.Material.Filled.MenuOpen"
-                                     ToggledSize="Size.Small" />
-            </MudTooltip>
-        }
+        <MudText Typo="Typo.caption">
+            <b>Application</b>
+        </MudText>
     </MudDrawerHeader>
 
     @if (SideMenuDrawerOpen)

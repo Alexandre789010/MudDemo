@@ -14,6 +14,7 @@ public partial class ThemesMenu
     
     private readonly List<string> _primaryColors = new()
     {
+        "#2d4275",
         Colors.Green.Default,
         Colors.Blue.Default,
         Colors.BlueGrey.Default,
@@ -27,12 +28,22 @@ public partial class ThemesMenu
     [EditorRequired] [Parameter] public ThemeManagerModel ThemeManager { get; set; }
     [EditorRequired] [Parameter] public EventCallback<ThemeManagerModel> ThemeManagerChanged { get; set; }
 
+    [Parameter]
+    public double Radius { get; set; }
+
+    [Parameter]
+    public double MaxValue { get; set; } = 32;
+
     private async Task UpdateThemePrimaryColor(string color)
     {
         ThemeManager.PrimaryColor = color;
         await ThemeManagerChanged.InvokeAsync(ThemeManager);
     }
-    
+    private async Task ChangedSelection(ChangeEventArgs args)
+    {
+        ThemeManager.BorderRadius = int.Parse(args?.Value?.ToString() ?? "0");
+        await ThemeManagerChanged.InvokeAsync(ThemeManager);
+    }
     private async Task ToggleDarkLightMode(bool isDarkMode)
     {
         ThemeManager.IsDarkMode = isDarkMode;

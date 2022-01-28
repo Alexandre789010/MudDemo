@@ -11,11 +11,12 @@ public partial class NavMenu
 
     [Inject] private INotificationsService NotificationsService { get; set; }
 
-    [EditorRequired] [Parameter] public ThemeManagerModel ThemeManager { get; set; }
-    [EditorRequired] [Parameter] public bool CanMiniSideMenuDrawer { get; set; }
+    [EditorRequired] [Parameter] public ThemeManagerModel ThemeManager { get; set; } = default!;
+    [EditorRequired] [Parameter] public bool SideMenuDrawerOpen { get; set; }
     [EditorRequired] [Parameter] public EventCallback ToggleSideMenuDrawer { get; set; }
     [EditorRequired] [Parameter] public EventCallback OpenCommandPalette { get; set; }
-    [EditorRequired] [Parameter] public UserModel User { get; set; }
+    [EditorRequired] [Parameter] public UserModel User { get; set; } = default!;
+ 
 
     protected override async Task OnInitializedAsync()
     {

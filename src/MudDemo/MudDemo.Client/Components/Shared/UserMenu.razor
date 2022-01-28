@@ -1,6 +1,7 @@
 <MudMenu AnchorOrigin="Origin.BottomRight"
          Class="@Class"
          LockScroll="true"
+         
          TransformOrigin="Origin.TopRight">
     <ActivatorContent>
         <MudAvatar Image="@User.Avatar" />
@@ -21,7 +22,7 @@
                 @User.Role
             </MudText>
             <MudDivider Class="my-2" />
-            <MudMenuItem >
+            <MudMenuItem Link="/user/profile" >
                 <div class="d-flex">
                     <MudIcon Class="mx-2"
                              Icon="@Icons.Material.Filled.Person" />

@@ -1,19 +1,21 @@
-<MudAppBar Class="px-8"
+<MudAppBar Class=""
            Elevation="0"
            Style="@(ThemeManager.IsDarkMode ? "background: rgba(21,27,34,0.7)" : "background: rgba(255,255,255,0.7)")">
-    @if (!CanMiniSideMenuDrawer)
-    {
-        <MudHidden Breakpoint="Breakpoint.MdAndUp">
             <MudTooltip Arrow="true"
                         Text="Toggle menu">
-                <MudIconButton Class="mr-3"
-                               Color="Color.Default"
-                               Edge="Edge.Start"
-                               Icon="@Icons.Material.Filled.Menu"
-                               OnClick="ToggleSideMenuDrawer"/>
+                         <MudToggleIconButton Class="mr-3"
+                                     Color="@Color.Default"
+                                     Icon="@Icons.Material.Filled.MenuOpen"
+                                     Size="Size.Medium"
+                                     Toggled="SideMenuDrawerOpen"
+                                     ToggledChanged="ToggleSideMenuDrawer"
+                                     ToggledColor="@Color.Default"
+                                     ToggledIcon="@Icons.Material.Filled.Close"
+                                      />
+          
             </MudTooltip>
-        </MudHidden>
-    }
+ 
+
     <MudTooltip Arrow="true"
                 Text="Search (Cmd + K)">
         <MudIconButton Color="Color.Default"
@@ -34,4 +36,6 @@
                       Notifications="_activeNotifications"/>
     <UserMenu Class="ml-3"
               User="User"/>
+    <MudDivider Class="mx-4 my-4"  DividerType="DividerType.Middle"  Vertical="true" FlexItem="true"></MudDivider>
+    <MudText Color="@Color.Primary" Typo="Typo.caption"><b>COMPANY</b></MudText>
 </MudAppBar>
