@@ -39,19 +39,24 @@ public partial class MainLayout : IDisposable
     {
         Palette = new Palette
         {
-            Primary = Colors.Green.Default
+            Primary = "#2d4275",
         },
         LayoutProperties = new LayoutProperties
         {
             AppbarHeight = "80px",
-            DefaultBorderRadius = "12px"
+            DefaultBorderRadius = "4px"
         },
         Typography = new Typography
         {
             Default = new Default
             {
                 FontSize = ".875rem",
+                FontFamily = new string[] { "Helvetica Neue eText Pro", "HelveticaNeue-Light", "Roboto", "Arial" }
             },
+            H6=new H6
+            {
+                FontSize= "1.125rem"
+            }
         }
     };
 
@@ -69,11 +74,8 @@ public partial class MainLayout : IDisposable
     private HotKeysContext? _hotKeysContext;
     private bool _sideMenuDrawerOpen = true;
 
-    private ThemeManagerModel _themeManager = new()
-    {
-        IsDarkMode = false,
-        PrimaryColor = Colors.Green.Default
-    };
+    private ThemeManagerModel _themeManager = new();
+ 
 
     private bool _themingDrawerOpen;
     [Inject] private IDialogService _dialogService { get; set; }
@@ -108,7 +110,6 @@ public partial class MainLayout : IDisposable
         _theme.Palette = _themeManager.IsDarkMode ? _darkPalette : _lightPalette;
         _theme.Palette.Primary = _themeManager.PrimaryColor;
         _theme.LayoutProperties.DefaultBorderRadius = _themeManager.BorderRadius + "px";
-        _theme.Typography.Default = new Default() { FontFamily = _themeManager.FontFamily };
         await UpdateThemeManagerLocalStorage();
     }
 

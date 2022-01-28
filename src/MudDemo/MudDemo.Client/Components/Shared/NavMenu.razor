@@ -1,6 +1,6 @@
 <MudAppBar Class=""
            Elevation="0"
-           Style="@(ThemeManager.IsDarkMode ? "background: rgba(21,27,34,0.7)" : "background: rgba(255,255,255,0.7)")">
+           Style="@(ThemeManager.IsDarkMode ? "background: rgba(21,27,34,0.7)" : "background: rgba(255,255,255,0.8)")">
             <MudTooltip Arrow="true"
                         Text="Toggle menu">
                          <MudToggleIconButton Class="mr-3"
@@ -36,6 +36,6 @@
                       Notifications="_activeNotifications"/>
     <UserMenu Class="ml-3"
               User="User"/>
-    <MudDivider Class="mx-4 my-4"  DividerType="DividerType.Middle"  Vertical="true" FlexItem="true"></MudDivider>
-    <MudText Color="@Color.Primary" Typo="Typo.caption"><b>COMPANY</b></MudText>
+    <MudDivider Class="mx-5 my-5"  DividerType="DividerType.Middle"  Vertical="true" FlexItem="true"></MudDivider>
+    <MudText Color="@Color.Primary" Typo="Typo.h6"><b>COMPANY</b></MudText>
 </MudAppBar>
