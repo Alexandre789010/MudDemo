@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>fff82c8a-c21e-456c-8c4d-afd31b0d09f7</UserSecretsId>
-		<InvariantGlobalization>true</InvariantGlobalization>
+		<InvariantGlobalization>false</InvariantGlobalization>
 		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
     </PropertyGroup>
 

@@ -1,4 +1,4 @@
-﻿@inject NavigationManager _navigation;
+﻿
 @inject IStringLocalizer<LanguageSelector> L
 
 <MudTooltip Text="@CurrentLanguage">
@@ -21,6 +21,7 @@
 @code {
     public string? CurrentLanguage { get; set; } = "en-US";
     [Inject] private ILocalStorageService _localStorage { get; set; } = default!;
+    [Inject] private NavigationManager _navigation { get; set; }=default!;
     protected override async Task OnInitializedAsync()
     {
         var languageCode = await _localStorage.GetItemAsync<string>("CurrentLanguage");

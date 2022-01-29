@@ -1,18 +1,20 @@
 ﻿@using Blazored.LocalStorage
+@using Microsoft.Extensions.Options
 @using MudDemo.Server.Models.Localization
+@using System.Globalization
 
 <MudTooltip Text="@CurrentLanguage">
     <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Default" Direction="Direction.Bottom" OffsetY="true"
         Dense="true">
-        @foreach (var language in LocalizationConstants.SupportedLanguages)
+        @foreach (var language in SupportedLanguages)
         {
-            if (language.Code == CurrentLanguage)
+            if (language.Name == CurrentLanguage)
             {
                 <MudMenuItem style="background:var(--mud-palette-primary); color:white">@language.DisplayName</MudMenuItem>
             }
             else
             {
-                <MudMenuItem OnClick="(()=> ChangeLanguageAsync(language.Code))">@language.DisplayName</MudMenuItem>
+                <MudMenuItem OnClick="(()=> ChangeLanguageAsync(language.Name))">@language.DisplayName</MudMenuItem>
             }
         }
     </MudMenu>
@@ -20,25 +22,24 @@
 
 @code {
     public string? CurrentLanguage { get; set; } = "en-US";
-    [Inject] private ILocalStorageService _localStorage { get; set; } = default!;
+    public List<CultureInfo>? SupportedLanguages { get; set; }
+    [Inject] private NavigationManager _navigation { get; set; }=default!;
+    [Inject] private IOptions<RequestLocalizationOptions>? localizationOptions { get; set; }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+
+    protected override Task OnInitializedAsync()
     {
-        var languageCode = await _localStorage.GetItemAsync<string>("CurrentLanguage");
-        if (languageCode != null)
-        {
-            CurrentLanguage = languageCode;
-        }
-        else
-        {
-            CurrentLanguage = "en-US";
-        }
-        StateHasChanged();
+        SupportedLanguages = localizationOptions?.Value?.SupportedCultures?.ToList();
+        CurrentLanguage = CultureInfo.CurrentCulture.Name;
+        return Task.CompletedTask;
     }
 
-    private async Task ChangeLanguageAsync(string languageCode)
+
+    private  Task ChangeLanguageAsync(string languageCode)
     {
         CurrentLanguage = languageCode;
-        await _localStorage.SetItemAsStringAsync("CurrentLanguage", languageCode);
+        _navigation.NavigateTo(_navigation.BaseUri + "?culture=" + languageCode, forceLoad: true);
+        return Task.CompletedTask;
+       
     }
 }
