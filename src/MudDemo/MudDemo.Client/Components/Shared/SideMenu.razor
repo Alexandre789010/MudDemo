@@ -20,7 +20,7 @@
     @if (SideMenuDrawerOpen)
     {
         <div class="mx-6">
-            <MudButton Class="d-flex justify-start my-6 user-button"
+            <MudButton Class="d-flex justify-start my-3 user-button"
                        FullWidth="true">
                 <ChildContent>
                     <div class="align-center d-flex">
@@ -119,20 +119,18 @@
 
     <MudDivider Class="mt-auto"></MudDivider>
     <MudNavMenu Class="d-flex justify-space-between pa-4" >
-        <MudLink Href="#"  Style="font-size:10px;line-height:18px;color:#6F6F6F !important">?022 Copyright</MudLink>
-        <MudLink Href="#"  Style="font-size:10px;line-height:18px;color:#6F6F6F !important"> Privacy Policy</MudLink>
-        <MudText Class=""  Style="font-size:10px;line-height:18px;color:#6F6F6F !important">version 1.0</MudText>
+        <MudLink Href="#"  Style="font-size:0.625rem;line-height:1.125rem;color:#6F6F6F !important">?022 Copyright</MudLink>
+        <MudLink Href="#"  Style="font-size:0.625rem;line-height:1.125rem;color:#6F6F6F !important"> Privacy Policy</MudLink>
+        <MudText Class=""  Style="font-size:0.625rem;line-height:1.125rem;color:#6F6F6F !important">version 1.0</MudText>
     </MudNavMenu>
 
 </MudDrawer>
 
 <style>
 
-        .mud-nav-link {
+       .mud-nav-link {
             white-space: normal !important;
-            padding: 12px 16px 12px 38px;
         }
-        
         .mud-nav-link.active:not(.mud-nav-link-disabled) {
             border-right: 3px solid var(--mud-palette-primary);
             background-color: rgba(var(--mud-palette-primary-rgb), 0.1)
@@ -149,8 +147,8 @@
         
         .side-menu .mud-chip.mud-chip-size-small
         {
-            font-size: 10px;
-            height: 18px;
+            font-size: 0.625rem;
+            height: 1.125rem;
         }
        
 </style>
