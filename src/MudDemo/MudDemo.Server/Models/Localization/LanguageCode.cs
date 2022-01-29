@@ -10,7 +10,6 @@ public static class LocalizationConstants
     {
         new("en-US", "English"),
         new("fr-FR", "French"),
-        new("km_KH", "Khmer"),
         new("de-DE", "German"),
         new("ja-JP", "Japanese"),
         new("es-ES", "Spanish"),
