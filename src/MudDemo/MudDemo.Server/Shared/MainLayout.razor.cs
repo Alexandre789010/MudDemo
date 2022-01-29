@@ -1,11 +1,11 @@
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using MudDemo.Client.Components.Shared;
-using MudDemo.Client.Models;
+using MudDemo.Server.Components.Shared;
+using MudDemo.Server.Models;
 using Toolbelt.Blazor.HotKeys;
 
-namespace MudDemo.Client.Shared;
+namespace MudDemo.Server.Shared;
 
 public partial class MainLayout : IDisposable
 {
@@ -94,16 +94,23 @@ public partial class MainLayout : IDisposable
     {
         _hotKeysContext?.Dispose();
     }
-
-    protected override async Task OnInitializedAsync()
+  
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (await _localStorage.ContainKeyAsync("themeManager"))
-            _themeManager = await _localStorage.GetItemAsync<ThemeManagerModel>("themeManager");
-
-        await ThemeManagerChanged(_themeManager);
-
+        if (firstRender)
+        {
+            if (await _localStorage.ContainKeyAsync("themeManager"))
+                _themeManager = await _localStorage.GetItemAsync<ThemeManagerModel>("themeManager");
+            await ThemeManagerChanged(_themeManager);
+            StateHasChanged();
+        }
+    }
+    protected override Task OnInitializedAsync()
+    {
+       
         _hotKeysContext = _hotKeys.CreateContext()
             .Add(ModKeys.Meta, Keys.K, OpenCommandPalette, "Open command palette.");
+        return Task.CompletedTask;
     }
 
     private void ToggleSideMenuDrawer()
