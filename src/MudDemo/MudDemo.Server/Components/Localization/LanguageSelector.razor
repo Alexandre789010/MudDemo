@@ -1,0 +1,44 @@
+﻿@using Blazored.LocalStorage
+@using MudDemo.Server.Models.Localization
+
+<MudTooltip Text="@CurrentLanguage">
+    <MudMenu Icon="@Icons.Material.Outlined.Translate" Color="Color.Default" Direction="Direction.Bottom" OffsetY="true"
+        Dense="true">
+        @foreach (var language in LocalizationConstants.SupportedLanguages)
+        {
+            if (language.Code == CurrentLanguage)
+            {
+                <MudMenuItem style="background:var(--mud-palette-primary); color:white">@language.DisplayName</MudMenuItem>
+            }
+            else
+            {
+                <MudMenuItem OnClick="(()=> ChangeLanguageAsync(language.Code))">@language.DisplayName</MudMenuItem>
+            }
+        }
+    </MudMenu>
+</MudTooltip>
+
+@code {
+    public string? CurrentLanguage { get; set; } = "en-US";
+    [Inject] private ILocalStorageService _localStorage { get; set; } = default!;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var languageCode = await _localStorage.GetItemAsync<string>("CurrentLanguage");
+        if (languageCode != null)
+        {
+            CurrentLanguage = languageCode;
+        }
+        else
+        {
+            CurrentLanguage = "en-US";
+        }
+        StateHasChanged();
+    }
+
+    private async Task ChangeLanguageAsync(string languageCode)
+    {
+        CurrentLanguage = languageCode;
+        await _localStorage.SetItemAsStringAsync("CurrentLanguage", languageCode);
+    }
+}

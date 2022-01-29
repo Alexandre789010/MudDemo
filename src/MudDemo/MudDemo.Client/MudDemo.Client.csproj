@@ -20,6 +20,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Include="Components\Localization\LanguageSelector.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
         <Content Update="wwwroot\sample-data\articles.json">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
