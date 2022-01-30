@@ -2,6 +2,7 @@ namespace MudDemo.Client.Pages;
 
 public partial class Index
 {
+    public string Title { get; set; } = "Dashboard";
     private const int TotalActiveUsers = 18765;
     private const double IncreaseDecreaseActiveUsers = 2.6;
     private const int TotalInstalls = 4876;

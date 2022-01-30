@@ -32,18 +32,20 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                transform-style:preserve-3d;
             }
 
                 section h2 {
                     text-align: center;
                     line-height: 0.6em;
                     font-size: 10vw;
-                    z-index: 85;
+                    z-index: 95;
                     color: #fff;
                     font-weight: 900;
                 }
 
                     section h2 span {
+                        z-index: 65;
                         font-size: 0.2em;
                         letter-spacing: 0.1em;
                         font-weight: 400;
@@ -73,20 +75,33 @@
                 section.appendChild(blocks);
             }
             function animateBlocks() {
+                var width = window.innerWidth
+                    || document.documentElement.clientWidth
+                    || document.body.clientWidth;
+
+                var height = window.innerHeight
+                    || document.documentElement.clientHeight
+                    || document.body.clientHeight;
                 anime({
                     targets: '.block',
                     translateX: function () {
-                        return anime.random(-700, 700);
+                        return anime.random(-width / 1.5, width / 1.5);
                     },
                     translateY: function () {
-                        return anime.random(-500, 500);
+                        return anime.random(-height / 1.5, height / 1.5);
+                    },
+                    translateZ: function () {
+                        return anime.random(-120, 500);
                     },
                     scale: function () {
                         return anime.random(1, 5);
                     },
+                    begin: function (anim) {
+                        console.log(anim);
+                    },
                     easing: 'easeInOutBack',
-                    duration: 3000,
-                    dalay: anime.stagger(10),
+                    duration: function () { return anime.random(1200, 3800); },
+                    dalay: anime.stagger(20, { direction: 'reverse' }),
                     complete: animateBlocks
 
                 });
