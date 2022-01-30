@@ -66,6 +66,7 @@
             const section = document.querySelector('section');
             for (var i = 0; i <= 50; i++) {
                 const zindex = Math.floor(Math.random() * 100)
+                const top = Math.floor(Math.random() * 2017)
                 const blocks = document.createElement('div');
                 blocks.style.zIndex = zindex;
                 blocks.classList.add('block');
