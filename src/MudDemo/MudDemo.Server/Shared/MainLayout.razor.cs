@@ -165,7 +165,6 @@ public partial class MainLayout : IDisposable
         Role = "Admin"
     };
 
-    private bool _canMiniSideMenuDrawer = false;
     private bool _commandPaletteOpen;
 
     private HotKeysContext? _hotKeysContext;
