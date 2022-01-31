@@ -1,5 +1,4 @@
 namespace MudDemo.Server.Pages;
-
 public partial class Index
 {
     public string Title { get; set; } = "Dashboard";

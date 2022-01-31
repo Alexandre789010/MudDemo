@@ -201,13 +201,20 @@ public partial class MainLayout : IDisposable
             .Add(ModKeys.Meta, Keys.K, OpenCommandPalette, "Open command palette.");
         return Task.CompletedTask;
     }
-
-    private void ToggleSideMenuDrawer()
+    protected void SideMenuDrawerOpenChangedHandler(bool state)
+    {
+        _sideMenuDrawerOpen = state;
+    }
+    protected void ThemingDrawerOpenChangedHandler(bool state)
+    {
+        _themingDrawerOpen = state;
+    }
+    protected void ToggleSideMenuDrawer()
     {
         _sideMenuDrawerOpen = !_sideMenuDrawerOpen;
     }
 
-    private async Task ThemeManagerChanged(ThemeManagerModel themeManager)
+    protected async Task ThemeManagerChanged(ThemeManagerModel themeManager)
     {
         _themeManager = themeManager;
 
