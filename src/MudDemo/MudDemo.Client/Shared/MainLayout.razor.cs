@@ -200,7 +200,14 @@ public partial class MainLayout : IDisposable
     {
         _sideMenuDrawerOpen = !_sideMenuDrawerOpen;
     }
-
+    protected void SideMenuDrawerOpenChangedHandler(bool state)
+    {
+        _sideMenuDrawerOpen=state;
+    }
+    protected void ThemingDrawerOpenChangedHandler(bool state)
+    {
+        _themingDrawerOpen = state;
+    }
     private async Task ThemeManagerChanged(ThemeManagerModel themeManager)
     {
         _themeManager = themeManager;

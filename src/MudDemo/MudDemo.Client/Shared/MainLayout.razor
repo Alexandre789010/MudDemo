@@ -11,11 +11,12 @@
              ToggleSideMenuDrawer="ToggleSideMenuDrawer"
              User="_user" />
 
-    <SideMenu @bind-CanMiniSideMenuDrawer="_canMiniSideMenuDrawer"
-              @bind-SideMenuDrawerOpen="_sideMenuDrawerOpen"
+    <SideMenu SideMenuDrawerOpen="_sideMenuDrawerOpen"
+              SideMenuDrawerOpenChanged="SideMenuDrawerOpenChangedHandler"
               User="_user" />
 
-    <ThemesMenu @bind-ThemingDrawerOpen="_themingDrawerOpen"
+    <ThemesMenu ThemingDrawerOpen="_themingDrawerOpen"
+                ThemingDrawerOpenChanged="ThemingDrawerOpenChangedHandler"
                 ThemeManager="_themeManager"
                 ThemeManagerChanged="ThemeManagerChanged" />
     <ThemesButton OnClick="@(() => _themingDrawerOpen = true)" />

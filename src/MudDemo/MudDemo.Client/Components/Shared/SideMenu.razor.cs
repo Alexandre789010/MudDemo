@@ -116,7 +116,5 @@ public partial class SideMenu
 
     [EditorRequired] [Parameter] public bool SideMenuDrawerOpen { get; set; }
     [EditorRequired] [Parameter] public EventCallback<bool> SideMenuDrawerOpenChanged { get; set; }
-    [EditorRequired] [Parameter] public bool CanMiniSideMenuDrawer { get; set; }
-    [EditorRequired] [Parameter] public EventCallback<bool> CanMiniSideMenuDrawerChanged { get; set; }
     [EditorRequired] [Parameter] public UserModel User { get; set; }
 }
