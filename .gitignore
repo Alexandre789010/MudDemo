@@ -367,3 +367,9 @@ FodyWeavers.xsd
 .idea/
 
 *.key
+
+src/MudDemo/MudDemo.Client/Models/.DS_Store
+
+src/MudDemo/MudDemo.sln.DotSettings
+
+.DS_Store
