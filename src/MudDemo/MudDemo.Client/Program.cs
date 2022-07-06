@@ -1,8 +1,10 @@
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using MudDemo.Client;
+using MudDemo.Client.Auth;
 using MudDemo.Client.Services;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 
@@ -14,9 +16,12 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddMudServices();
 builder.Services.AddHotKeys();
-builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddBlazoredLocalStorage(); 
 
 builder.Services.AddTransient<INotificationsService, NotificationsService>();
 builder.Services.AddTransient<IArticlesService, ArticlesService>();
+
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, SimpleAuthenticationStateProvider>();
 
 await builder.Build().RunAsync();

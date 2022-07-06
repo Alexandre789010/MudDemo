@@ -1,0 +1,31 @@
+﻿@page "/Login"
+@using MudDemo.Client.Shared.Forms;
+
+<MudContainer MaxWidth="MaxWidth.Small">
+    <MudPaper Class="d-flex flex-column justify-space-between pa-4">
+        <div class="align-center d-flex flex-column justify-center">
+            <MudIcon Class="mb-2"
+                     Color="Color.Primary"
+                     Icon="@Icons.Custom.Brands.MudBlazor"
+                     Style="font-size: 70px"/>
+        </div>
+        <MudContainer Class="ps-9">
+            <LoginForm/>
+        </MudContainer>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    [CascadingParameter] protected Task<AuthenticationState> AuthenticationState { get; set; }
+    [Inject] private NavigationManager Nav { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var user = (await AuthenticationState).User;
+        if (user.Identity is {IsAuthenticated: true })
+        {
+            Nav.NavigateTo("/");
+        }
+    }
+
+}

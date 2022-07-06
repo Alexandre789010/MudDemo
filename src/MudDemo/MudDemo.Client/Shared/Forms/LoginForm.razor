@@ -1,0 +1,37 @@
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components
+@using MudDemo.Client.Auth
+@using MudDemo.Client.Models
+@inject AuthenticationStateProvider Auth;
+@inject NavigationManager Nav;
+
+<MudForm @ref="_form" @bind-IsValid="@_isValid" @bind-Errors="@_errors">
+    <MudTextField @bind-Value="_user.DisplayName" T="string" Label="Name" Required="true" RequiredError="Name is required!"/>
+    <MudTextField @bind-Value="_user.Email" T="string" Label="Email" Required="true" RequiredError="Email is required!" Class="my-3"
+                  Validation="@(new EmailAddressAttribute {ErrorMessage = "The email address is invalid"})"/>
+    <div class="d-flex align-center">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!_isValid)" Class="ml-auto" @onclick="Login">Login</MudButton>
+    </div>
+</MudForm>
+
+@code {
+
+    private readonly UserModel _user = new();
+    private bool _isValid;
+    private string[] _errors = Array.Empty<string>();
+    private MudForm _form = null!;
+
+    private async Task Login()
+    {
+        try
+        {
+            await ((SimpleAuthenticationStateProvider) Auth).AuthenticateUser(_user.DisplayName, _user.Email);
+            Nav.NavigateTo("/", true);
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+}
