@@ -1,5 +1,7 @@
 @using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components
 @using MudDemo.Client.Auth
+@using MudDemo.Client.Models
 @inject AuthenticationStateProvider Auth;
 @inject NavigationManager Nav;
 
@@ -11,3 +13,25 @@
         <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!_isValid)" Class="ml-auto" @onclick="Login">Login</MudButton>
     </div>
 </MudForm>
+
+@code {
+
+    private readonly UserModel _user = new();
+    private bool _isValid;
+    private string[] _errors = Array.Empty<string>();
+    private MudForm _form = null!;
+
+    private async Task Login()
+    {
+        try
+        {
+            await ((SimpleAuthenticationStateProvider) Auth).AuthenticateUser(_user.DisplayName, _user.Email);
+            Nav.NavigateTo("/", true);
+        }
+        catch
+        {
+            // ignored
+        }
+    }
+
+}
