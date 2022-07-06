@@ -55,13 +55,7 @@ public partial class MainLayout : IDisposable
         }
     };
 
-    private readonly UserModel _user = new()
-    {
-        Avatar = "./sample-data/avatar.png",
-        DisplayName = "MudDemo",
-        Email = "muddemo@demo.com.au",
-        Role = "Admin"
-    };
+    private UserModel _user = new();
 
     private bool _canMiniSideMenuDrawer = true;
     private bool _commandPaletteOpen;
@@ -87,6 +81,8 @@ public partial class MainLayout : IDisposable
 
     protected override async Task OnInitializedAsync()
     {
+        _user = await _localStorage.GetItemAsync<UserModel>("userData");
+        
         if (await _localStorage.ContainKeyAsync("themeManager"))
             _themeManager = await _localStorage.GetItemAsync<ThemeManagerModel>("themeManager");
 

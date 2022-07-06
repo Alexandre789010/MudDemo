@@ -1,0 +1,13 @@
+@using System.ComponentModel.DataAnnotations
+@using MudDemo.Client.Auth
+@inject AuthenticationStateProvider Auth;
+@inject NavigationManager Nav;
+
+<MudForm @ref="_form" @bind-IsValid="@_isValid" @bind-Errors="@_errors">
+    <MudTextField @bind-Value="_user.DisplayName" T="string" Label="Name" Required="true" RequiredError="Name is required!"/>
+    <MudTextField @bind-Value="_user.Email" T="string" Label="Email" Required="true" RequiredError="Email is required!" Class="my-3"
+                  Validation="@(new EmailAddressAttribute {ErrorMessage = "The email address is invalid"})"/>
+    <div class="d-flex align-center">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" Disabled="@(!_isValid)" Class="ml-auto" @onclick="Login">Login</MudButton>
+    </div>
+</MudForm>
