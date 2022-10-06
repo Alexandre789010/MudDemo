@@ -1,6 +1,6 @@
 # MudDemo
 
-This project is an example of what an admin dashboard built using MudBlazor could look like. (Still being developed) 
+This project is an example of what an admin dashboard built using MudBlazor could look like.
 
 [Live Demo](https://nice-grass-0b030b110.azurestaticapps.net)
 
